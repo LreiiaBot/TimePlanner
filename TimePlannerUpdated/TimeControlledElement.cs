@@ -24,7 +24,7 @@ namespace TimePlannerUpdated
             while (AutoReminders.Count < MinimalAutoRemindersCount)
             {
                 var reminder = new Reminder();
-                // ToDo neue reminder erstellen
+                // ToDo create new reminders
                 AutoReminders.Add(reminder);
             }
         }
@@ -32,7 +32,9 @@ namespace TimePlannerUpdated
         public List<Reminder> GetAllReminders()
         {
             // I have to convince myself that the references are still valid but i guess
-            return AutoReminders.Concat(CustomReminders).ToList();
+            var reminders = AutoReminders.Concat(CustomReminders).ToList();
+            reminders.Sort(new ReminderSorter());
+            return reminders;
         }
 
         public void SetDefaultValues()
