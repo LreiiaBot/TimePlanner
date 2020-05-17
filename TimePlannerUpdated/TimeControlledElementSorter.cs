@@ -6,6 +6,7 @@ namespace TimePlannerUpdated
     {
         public int Compare(TimeControlledElement x, TimeControlledElement y)
         {
+            // Check !null is before null and !done is before done
             var deadlineX = GetNextUndoneReminder(x).Deadline;
             var deadlineY = GetNextUndoneReminder(y).Deadline;
 
