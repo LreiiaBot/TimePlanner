@@ -15,19 +15,19 @@ namespace TimePlannerUpdated
             }
             if (x.Deadline == null)
             {
-                ret = -1;
+                ret = 1;
             }
             else if (y.Deadline == null)
             {
-                ret = 1;
-            }
-            else if (x.Deadline > y.Deadline)
-            {
-                ret = 1;
+                ret = -1;
             }
             else if (x.Deadline < y.Deadline)
             {
                 ret = -1;
+            }
+            else if (x.Deadline > y.Deadline)
+            {
+                ret = 1;
             }
             else if (x.Deadline == y.Deadline)
             {
