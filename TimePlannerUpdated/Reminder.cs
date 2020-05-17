@@ -11,5 +11,10 @@ namespace TimePlannerUpdated
         {
             Done = false;
         }
+
+        public Reminder(DateTime deadline) : this()
+        {
+            Deadline = deadline;
+        }
     }
 }
