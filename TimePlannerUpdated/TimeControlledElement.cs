@@ -15,6 +15,11 @@ namespace TimePlannerUpdated
 
         public TimeControlledElement()
         {
+            Init();
+        }
+
+        protected virtual void Init()
+        {
             SetDefaultValues();
             AddNewAutoReminders();
         }
@@ -37,7 +42,7 @@ namespace TimePlannerUpdated
             return reminders;
         }
 
-        public void SetDefaultValues()
+        protected virtual void SetDefaultValues()
         {
             // Set defaultvalues maybe of [json] file
             MinimalAutoRemindersCount = 5;
