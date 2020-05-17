@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TimePlannerUpdated
 {
-    abstract class TimeControlledElement
+    abstract class TimeControlledElement : PrintableElement
     {
         public DateTime StartingTime { get; set; }
 
@@ -47,5 +47,7 @@ namespace TimePlannerUpdated
             // Set defaultvalues maybe of [json] file
             MinimalAutoRemindersCount = 5;
         }
+
+        public abstract void Print(bool endRow);
     }
 }

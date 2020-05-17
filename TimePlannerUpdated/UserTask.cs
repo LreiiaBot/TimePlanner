@@ -6,6 +6,13 @@
         {
 
         }
+
+
+        public override void Print(bool endRow)
+        {
+
+        }
+
         protected override void SetDefaultValues()
         {
             base.SetDefaultValues();
