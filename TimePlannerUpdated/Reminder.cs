@@ -22,7 +22,7 @@ namespace TimePlannerUpdated
         {
             var dateString = Deadline.Format();
             var doneString = Done ? "Done" : "NotDone";
-            Console.WriteLine(dateString + " " + doneString);
+            Console.Write(dateString + " " + doneString);
         }
     }
 }
