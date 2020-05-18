@@ -28,8 +28,8 @@ namespace TimePlannerUpdated
             // ToDo doesnt work yet
             PrintDone();
             SetTimeColor();
-            PrintRemainingTime();
             PrintDeadline();
+            PrintRemainingTime();
             if (enter)
             {
                 Console.WriteLine();
@@ -59,13 +59,13 @@ namespace TimePlannerUpdated
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Green;
             }
         }
 
         protected virtual void PrintDeadline()
         {
-            Console.Write(Deadline.Format());
+            Console.Write(Deadline.Format() + String.Empty.PadRight(3));
         }
 
         protected virtual void PrintDone()
@@ -82,13 +82,13 @@ namespace TimePlannerUpdated
                 print = "Remaining";
                 Console.ForegroundColor = ConsoleColor.Red;
             }
-            Console.Write(print.PadRight(10));
+            Console.Write(print.PadRight(12));
         }
 
         protected virtual void PrintRemainingTime()
         {
             var timeLeft = Deadline.GetTimeLeft();
-            Console.Write(timeLeft.Format().PadRight(16));
+            Console.Write(timeLeft.Format());
         }
     }
 }

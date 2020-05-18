@@ -56,10 +56,10 @@ namespace TimePlannerUpdated
             }
         }
 
-        public void PrintWithReminders()
+        public void PrintWithReminders(bool withDone)
         {
             Print(true);
-            PrintReminders();
+            PrintReminders(withDone);
         }
 
         private void SetConsoleColor(bool isOk)

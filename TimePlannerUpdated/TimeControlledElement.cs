@@ -35,10 +35,14 @@ namespace TimePlannerUpdated
             }
         }
 
-        public List<Reminder> GetAllReminders()
+        public List<Reminder> GetAllReminders(bool withDone = true)
         {
             // I have to convince myself that the references are still valid but i guess
             var reminders = AutoReminders.Concat(customReminders).ToList();
+            if (!withDone)
+            {
+                reminders = reminders.Where((item) => !item.Done).ToList();
+            }
             reminders.Sort(new ReminderSorter());
             return reminders;
         }
@@ -51,9 +55,9 @@ namespace TimePlannerUpdated
 
         public abstract void Print(bool enter);
 
-        protected virtual void PrintReminders()
+        protected virtual void PrintReminders(bool withDone)
         {
-            foreach (var reminder in GetAllReminders())
+            foreach (var reminder in GetAllReminders(withDone))
             {
                 reminder.Print(true);
             }
@@ -70,16 +74,15 @@ namespace TimePlannerUpdated
             foreach (var element in elements)
             {
                 element.Print(false);
-                Console.WriteLine(" | test");
             }
         }
 
-        public static void PrintWithReminders(IEnumerable<TimeControlledElement> elements)
+        public static void PrintWithReminders(IEnumerable<TimeControlledElement> elements, bool withDone = true)
         {
             foreach (var element in elements)
             {
                 element.Print(true);
-                element.PrintReminders();
+                element.PrintReminders(withDone);
             }
         }
     }

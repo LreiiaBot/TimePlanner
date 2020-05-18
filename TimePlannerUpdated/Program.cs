@@ -33,7 +33,7 @@ namespace TimePlannerUpdated
 
             //TimeControlledElement.Print(liste);
             liste.Sort(new TimeControlledElementSorter());
-            TimeControlledElement.PrintWithReminders(liste);
+            TimeControlledElement.PrintWithReminders(liste, true);
 
             Console.ReadLine();
         }
