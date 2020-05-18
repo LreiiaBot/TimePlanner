@@ -10,6 +10,16 @@ namespace TimePlannerUpdated
             return dateString;
         }
 
+        public static string Format(this TimeSpan time)
+        {
+            if (time == null)
+            {
+                return "none";
+            }
+            var timeString = time.ToString(@"dd\.hh\:mm");
+            return timeString;
+        }
+
         public static Tuple<string, bool> ToSetLength(this string input, int maxSpace)
         {
             bool fitsIn = true;
@@ -19,15 +29,26 @@ namespace TimePlannerUpdated
                 output = input.Substring(0, maxSpace);
                 fitsIn = false;
             }
-            else if (input.Length < maxSpace)
-            {
-                output = input.PadRight(maxSpace);
-            }
             else
             {
                 output = input;
             }
-            return new Tuple<string, bool>(output, fitsIn);
+            return new Tuple<string, bool>(output.PadRight(maxSpace), fitsIn);
+        }
+
+        public static bool IsInThePast(this DateTimeOffset date)
+        {
+            bool past = false;
+            if (date.Subtract(DateTimeOffset.Now) < TimeSpan.Zero)
+            {
+                past = true;
+            }
+            return past;
+        }
+
+        public static TimeSpan GetTimeLeft(this DateTimeOffset date)
+        {
+            return date.Subtract(DateTimeOffset.Now);
         }
     }
 }

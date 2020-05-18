@@ -21,14 +21,17 @@ namespace TimePlannerUpdated
             Title = title;
         }
 
-        public override void Print()
+        public override void Print(bool enter)
         {
-            var hasTitle = true;
+            var hasTitle = false;
             var spaceForDescription = SpaceForTitleAndDescription;
-            if (String.IsNullOrWhiteSpace(Title))
+
+            // If there is a title
+            if (!String.IsNullOrWhiteSpace(Title))
             {
-                spaceForDescription -= SpaceForTitle - SpaceBetween;
-                hasTitle = false;
+                spaceForDescription -= SpaceForTitle;
+                spaceForDescription -= SpaceBetween;
+                hasTitle = true;
             }
             if (hasTitle)
             {
@@ -47,6 +50,16 @@ namespace TimePlannerUpdated
             var resultDescription = Description.ToSetLength(spaceForDescription);
             SetConsoleColor(resultDescription.Item2);
             Console.Write(resultDescription.Item1);
+            if (enter)
+            {
+                Console.WriteLine();
+            }
+        }
+
+        public void PrintWithReminders()
+        {
+            Print(true);
+            PrintReminders();
         }
 
         private void SetConsoleColor(bool isOk)

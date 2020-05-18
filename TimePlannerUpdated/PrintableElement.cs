@@ -2,6 +2,6 @@
 {
     interface PrintableElement
     {
-        public void Print();
+        public void Print(bool enter);
     }
 }

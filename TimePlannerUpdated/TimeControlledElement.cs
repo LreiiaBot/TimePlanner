@@ -11,7 +11,7 @@ namespace TimePlannerUpdated
         public int MinimalAutoRemindersCount { get; set; }
 
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
-        public List<Reminder> CustomReminders { get; set; } = new List<Reminder>();
+        private List<Reminder> customReminders = new List<Reminder>();
         // int autoAddDays, autoAddMonths, autoAddYears
 
         public TimeControlledElement()
@@ -29,7 +29,7 @@ namespace TimePlannerUpdated
         {
             while (AutoReminders.Count < MinimalAutoRemindersCount)
             {
-                var reminder = new Reminder();
+                var reminder = new Reminder(this);
                 // ToDo create new reminders
                 AutoReminders.Add(reminder);
             }
@@ -38,7 +38,7 @@ namespace TimePlannerUpdated
         public List<Reminder> GetAllReminders()
         {
             // I have to convince myself that the references are still valid but i guess
-            var reminders = AutoReminders.Concat(CustomReminders).ToList();
+            var reminders = AutoReminders.Concat(customReminders).ToList();
             reminders.Sort(new ReminderSorter());
             return reminders;
         }
@@ -49,6 +49,38 @@ namespace TimePlannerUpdated
             MinimalAutoRemindersCount = 5;
         }
 
-        public abstract void Print();
+        public abstract void Print(bool enter);
+
+        protected virtual void PrintReminders()
+        {
+            foreach (var reminder in GetAllReminders())
+            {
+                reminder.Print(true);
+            }
+        }
+
+        public virtual void AddReminder(Reminder reminder)
+        {
+            reminder.Parent = this;
+            customReminders.Add(reminder);
+        }
+
+        public static void Print(IEnumerable<TimeControlledElement> elements)
+        {
+            foreach (var element in elements)
+            {
+                element.Print(false);
+                Console.WriteLine(" | test");
+            }
+        }
+
+        public static void PrintWithReminders(IEnumerable<TimeControlledElement> elements)
+        {
+            foreach (var element in elements)
+            {
+                element.Print(true);
+                element.PrintReminders();
+            }
+        }
     }
 }
