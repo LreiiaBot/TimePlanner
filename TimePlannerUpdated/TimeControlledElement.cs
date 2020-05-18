@@ -12,6 +12,7 @@ namespace TimePlannerUpdated
 
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
         public List<Reminder> CustomReminders { get; set; } = new List<Reminder>();
+        // int autoAddDays, autoAddMonths, autoAddYears
 
         public TimeControlledElement()
         {
@@ -48,6 +49,6 @@ namespace TimePlannerUpdated
             MinimalAutoRemindersCount = 5;
         }
 
-        public abstract void Print(bool endRow);
+        public abstract void Print();
     }
 }

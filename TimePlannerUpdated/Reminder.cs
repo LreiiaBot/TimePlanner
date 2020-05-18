@@ -2,19 +2,27 @@
 
 namespace TimePlannerUpdated
 {
-    class Reminder
+    class Reminder : PrintableElement
     {
-        public bool Done { get; set; }
-        public DateTime Deadline { get; set; }
+        public bool Done { get; set; } = false;
+        public DateTimeOffset Deadline { get; set; }
+
 
         public Reminder()
         {
-            Done = false;
+
         }
 
-        public Reminder(DateTime deadline) : this()
+        public Reminder(DateTimeOffset deadline) : this()
         {
             Deadline = deadline;
+        }
+
+        public void Print()
+        {
+            var dateString = Deadline.ToString("dd.MM.yyyy");
+            var doneString = Done ? "Done" : "NotDone";
+            Console.WriteLine(dateString + " " + doneString);
         }
     }
 }

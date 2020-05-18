@@ -21,21 +21,21 @@ namespace TimePlannerUpdated
             {
                 ret = -1;
             }
-            else if (x.Deadline == null || y.Deadline == null)
-            {
-                if (x.Deadline != null)
-                {
-                    ret = 1;
-                }
-                else if (y.Deadline != null)
-                {
-                    ret = -1;
-                }
-                else
-                {
-                    ret = 0;
-                }
-            }
+            //else if (!x.Deadline.HasValue || !y.Deadline.HasValue)
+            //{
+            //    if (!x.Deadline.HasValue)
+            //    {
+            //        ret = 1;
+            //    }
+            //    else if (!y.Deadline.HasValue)
+            //    {
+            //        ret = -1;
+            //    }
+            //    else
+            //    {
+            //        ret = 0;
+            //    }
+            //}
             else if (x.Deadline < y.Deadline)
             {
                 ret = -1;

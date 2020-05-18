@@ -8,7 +8,7 @@
         }
 
 
-        public override void Print(bool endRow)
+        public override void Print()
         {
 
         }
