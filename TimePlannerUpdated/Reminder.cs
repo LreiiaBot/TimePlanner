@@ -20,7 +20,7 @@ namespace TimePlannerUpdated
 
         public void Print()
         {
-            var dateString = Deadline.ToString("dd.MM.yyyy");
+            var dateString = Deadline.Format();
             var doneString = Done ? "Done" : "NotDone";
             Console.WriteLine(dateString + " " + doneString);
         }
