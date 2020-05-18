@@ -10,7 +10,7 @@ namespace TimePlannerUpdated
 
         public Reminder()
         {
-
+            Deadline = DateTimeOffset.Now;
         }
 
         public Reminder(TimeControlledElement parent) : this()
@@ -26,10 +26,10 @@ namespace TimePlannerUpdated
         public void Print(bool enter)
         {
             // ToDo doesnt work yet
+            PrintDone();
             SetTimeColor();
             PrintRemainingTime();
             PrintDeadline();
-            PrintDone();
             if (enter)
             {
                 Console.WriteLine();
@@ -48,11 +48,18 @@ namespace TimePlannerUpdated
             Console.ResetColor();
             if (Deadline.IsInThePast())
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                if (Done)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
 
@@ -73,15 +80,15 @@ namespace TimePlannerUpdated
             else
             {
                 print = "Remaining";
-                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red;
             }
-            Console.Write(print);
+            Console.Write(print.PadRight(10));
         }
 
         protected virtual void PrintRemainingTime()
         {
             var timeLeft = Deadline.GetTimeLeft();
-            Console.Write(timeLeft.Format());
+            Console.Write(timeLeft.Format().PadRight(16));
         }
     }
 }

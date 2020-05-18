@@ -71,7 +71,7 @@ namespace TimePlannerUpdated
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
             }
         }
 

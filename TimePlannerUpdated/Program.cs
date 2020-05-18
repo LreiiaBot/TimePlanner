@@ -29,9 +29,11 @@ namespace TimePlannerUpdated
 
             liste.Add(new UserTask("Einkauf", "lecker schmecker süß und saftig"));
             liste.Add(new UserTask("beschreibung yikes"));
-            liste.Add(new UserTask("Drogen", "nom nom nom nom nom nom nom nom nom nom nom nom"));
+            liste.Add(new UserTask("Essen", "nom nom nom nom nom nom nom nom nom nom nom nom"));
 
-            TimeControlledElement.Print(liste);
+            //TimeControlledElement.Print(liste);
+            liste.Sort(new TimeControlledElementSorter());
+            TimeControlledElement.PrintWithReminders(liste);
 
             Console.ReadLine();
         }

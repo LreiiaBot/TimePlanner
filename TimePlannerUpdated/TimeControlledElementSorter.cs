@@ -6,19 +6,43 @@ namespace TimePlannerUpdated
     {
         public int Compare(TimeControlledElement x, TimeControlledElement y)
         {
-            // Check !null is before null and !done is before done
-            var deadlineX = GetNextUndoneReminder(x).Deadline;
-            var deadlineY = GetNextUndoneReminder(y).Deadline;
+            var reminderX = GetNextUndoneReminder(x);
+            var reminderY = GetNextUndoneReminder(y);
 
             var ret = 0;
 
-            if (deadlineX < deadlineY)
+            if (reminderX == null || reminderY == null)
             {
-                ret = -1;
+                if (reminderX != null)
+                {
+                    ret = -1;
+                }
+                else if (reminderY != null)
+                {
+                    ret = 1;
+                }
             }
-            else if (deadlineX > deadlineY)
+            else if (reminderX.Done == reminderY.Done)
+            {
+                var deadlineX = reminderX.Deadline;
+                var deadlineY = reminderY.Deadline;
+                if (deadlineX < deadlineY)
+                {
+                    ret = -1;
+                }
+                // would == check the referece?
+                else if (deadlineX > deadlineY)
+                {
+                    ret = 1;
+                }
+            }
+            else if (reminderX.Done)
             {
                 ret = 1;
+            }
+            else if (reminderY.Done)
+            {
+                ret = -1;
             }
 
             return ret;
