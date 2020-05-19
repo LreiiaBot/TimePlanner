@@ -50,7 +50,7 @@ namespace TimePlannerUpdated
             {
                 if (Done)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 }
                 else
                 {
