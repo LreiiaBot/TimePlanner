@@ -2,7 +2,7 @@
 
 namespace TimePlannerUpdated
 {
-    class Reminder : PrintableElement
+    class Reminder : IPrintableElement
     {
         public bool Done { get; set; } = false;
         public DateTimeOffset Deadline { get; set; }

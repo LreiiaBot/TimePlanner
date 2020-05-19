@@ -1,6 +1,6 @@
 ﻿namespace TimePlannerUpdated
 {
-    interface PrintableElement
+    interface IPrintableElement
     {
         public void Print(bool enter);
     }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TimePlannerUpdated
 {
-    abstract class TimeControlledElement : PrintableElement
+    abstract class TimeControlledElement : IPrintableElement
     {
         public DateTime StartingTime { get; set; }
 
