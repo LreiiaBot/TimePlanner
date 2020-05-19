@@ -1,0 +1,4 @@
+Protocol when
+list changed/created/deleted
+task changed/created/deleted
+task moved
