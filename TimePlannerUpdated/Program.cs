@@ -7,6 +7,9 @@ namespace TimePlannerUpdated
     {
         static void Main(string[] args)
         {
+            ConsoleListener.Setup();
+            ConsoleListener.ClickEvent += OnClick;
+            ConsoleListener.Start();
             // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
 
             var liste = new List<TimeControlledElement>();
@@ -36,6 +39,13 @@ namespace TimePlannerUpdated
             TimeControlledElement.PrintWithReminders(liste, true);
 
             Console.ReadLine();
+        }
+
+        private static void OnClick(NativeMethods.MOUSE_EVENT_RECORD r)
+        {
+            Console.WriteLine("clicked" + r.dwMousePosition.X + " " + r.dwMousePosition.Y);
+            //Console.WindowWidth = Console.WindowWidth - 1;
+            //Console.CursorTop = 0;
         }
     }
 }

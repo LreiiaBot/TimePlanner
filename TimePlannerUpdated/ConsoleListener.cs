@@ -12,6 +12,12 @@ namespace TimePlannerUpdated
 
         public static event ConsoleWindowBufferSizeEvent WindowBufferSizeEvent;
 
+
+        public static event ConsoleMouseEvent ClickEvent;
+        public static event ConsoleMouseEvent ScrollUpEvent;
+        public static event ConsoleMouseEvent ScrollDownEvent;
+
+
         private static bool Run = false;
 
         public static void Setup()
@@ -54,6 +60,18 @@ namespace TimePlannerUpdated
                             {
                                 case INPUT_RECORD.MOUSE_EVENT:
                                     MouseEvent?.Invoke(record[0].MouseEvent);
+                                    switch (record[0].MouseEvent.dwButtonState)
+                                    {
+                                        case MOUSE_EVENT_RECORD.FROM_LEFT_1ST_BUTTON_PRESSED:
+                                            ClickEvent?.Invoke(record[0].MouseEvent);
+                                            break;
+                                        case MOUSE_EVENT_RECORD.SCROLLED_UP:
+                                            ScrollUpEvent?.Invoke(record[0].MouseEvent);
+                                            break;
+                                        case MOUSE_EVENT_RECORD.SCROLLED_DOWN:
+                                            ScrollDownEvent?.Invoke(record[0].MouseEvent);
+                                            break;
+                                    }
                                     break;
                                 case INPUT_RECORD.KEY_EVENT:
                                     KeyEvent?.Invoke(record[0].KeyEvent);
