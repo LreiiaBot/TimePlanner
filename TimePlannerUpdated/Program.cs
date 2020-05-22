@@ -15,9 +15,7 @@ namespace TimePlannerUpdated
 
         private void Run()
         {
-            //ConsoleListener.Setup();
-            //ConsoleListener.ClickEvent += OnClick;
-            //ConsoleListener.Start();
+            ConsoleListener.Setup();
             // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
 
             var task = new UserTask("kartoffeln kaufen");
@@ -43,26 +41,7 @@ namespace TimePlannerUpdated
             //TimeControlledElement.Print(liste);
             liste.Sort(new TimeControlledElementSorter());
 
-            timer.Interval = 10000; // 10 sec
-            timer.Elapsed += Timer_Tick;
-            timer.Enabled = true;
-
-            Timer_Tick(null, null);
-
-            Console.ReadLine();
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            Console.Clear();
-            TimeControlledElement.PrintWithReminders(liste, true);
-        }
-
-        private void OnClick(NativeMethods.MOUSE_EVENT_RECORD r)
-        {
-            Console.WriteLine("clicked" + r.dwMousePosition.X + " " + r.dwMousePosition.Y);
-            //Console.WindowWidth = Console.WindowWidth - 1;
-            //Console.CursorTop = 0;
+            Selector<TimeControlledElement> test = new Selector<TimeControlledElement>(liste);
         }
     }
 }

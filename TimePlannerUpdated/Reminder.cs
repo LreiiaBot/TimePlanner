@@ -30,7 +30,6 @@ namespace TimePlannerUpdated
 
         public void Print(bool enter)
         {
-            // ToDo doesnt work yet
             PrintDone();
             SetTimeColor();
             PrintDeadline();
