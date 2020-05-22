@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace TimePlannerUpdated
 {
     class Program
     {
+        private List<TimeControlledElement> liste = new List<TimeControlledElement>();
+        private Timer timer = new Timer();
         static void Main(string[] args)
         {
-            ConsoleListener.Setup();
-            ConsoleListener.ClickEvent += OnClick;
-            ConsoleListener.Start();
-            // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
+            new Program().Run();
+        }
 
-            var liste = new List<TimeControlledElement>();
+        private void Run()
+        {
+            //ConsoleListener.Setup();
+            //ConsoleListener.ClickEvent += OnClick;
+            //ConsoleListener.Start();
+            // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
 
             var task = new UserTask("kartoffeln kaufen");
             liste.Add(task);
@@ -36,12 +42,23 @@ namespace TimePlannerUpdated
 
             //TimeControlledElement.Print(liste);
             liste.Sort(new TimeControlledElementSorter());
-            TimeControlledElement.PrintWithReminders(liste, true);
+
+            timer.Interval = 10000; // 10 sec
+            timer.Elapsed += Timer_Tick;
+            timer.Enabled = true;
+
+            Timer_Tick(null, null);
 
             Console.ReadLine();
         }
 
-        private static void OnClick(NativeMethods.MOUSE_EVENT_RECORD r)
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Console.Clear();
+            TimeControlledElement.PrintWithReminders(liste, true);
+        }
+
+        private void OnClick(NativeMethods.MOUSE_EVENT_RECORD r)
         {
             Console.WriteLine("clicked" + r.dwMousePosition.X + " " + r.dwMousePosition.Y);
             //Console.WindowWidth = Console.WindowWidth - 1;

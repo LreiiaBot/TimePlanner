@@ -12,7 +12,7 @@ namespace TimePlannerUpdated
 
         public static event ConsoleWindowBufferSizeEvent WindowBufferSizeEvent;
 
-
+        // Own created Events
         public static event ConsoleMouseEvent ClickEvent;
         public static event ConsoleMouseEvent ScrollUpEvent;
         public static event ConsoleMouseEvent ScrollDownEvent;

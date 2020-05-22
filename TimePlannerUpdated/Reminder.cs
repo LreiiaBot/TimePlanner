@@ -23,6 +23,11 @@ namespace TimePlannerUpdated
             Deadline = deadline;
         }
 
+        public Reminder(TimeControlledElement parent, DateTimeOffset deadline) : this(parent)
+        {
+            Deadline = deadline;
+        }
+
         public void Print(bool enter)
         {
             // ToDo doesnt work yet

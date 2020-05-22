@@ -21,6 +21,17 @@ namespace TimePlannerUpdated
             Title = title;
         }
 
+        public UserTask(string title, string description, DateTimeOffset date) : this(title, description)
+        {
+            StartingTime = date;
+        }
+
+        public UserTask(string title, string description, DateTimeOffset date, int hours, int days, int months, int years) : this(title, description, date)
+        {
+            StartingTime = date;
+            SetAutoAddTimes(hours, days, months, years);
+        }
+
         public override void Print(bool enter)
         {
             var hasTitle = false;

@@ -6,12 +6,17 @@ namespace TimePlannerUpdated
 {
     abstract class TimeControlledElement : IPrintableElement
     {
-        public DateTime StartingTime { get; set; }
+        public DateTimeOffset StartingTime { get; set; }
 
         public int MinimalAutoRemindersCount { get; set; }
 
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
         private List<Reminder> customReminders = new List<Reminder>();
+
+        public int AutoAddHours { get; set; }
+        public int AutoAddDays { get; set; }
+        public int AutoAddMonths { get; set; }
+        public int AutoAddYears { get; set; }
         // int autoAddDays, autoAddMonths, autoAddYears
 
         public TimeControlledElement()
@@ -27,17 +32,39 @@ namespace TimePlannerUpdated
 
         public void AddNewAutoReminders()
         {
-            while (AutoReminders.Count < MinimalAutoRemindersCount)
+            // only if startingtime is "set" and at least one of hours days and months years is > 0
+            if (AutoAddHours > 0 || AutoAddDays > 0 || AutoAddMonths > 0 || AutoAddYears > 0)
             {
-                var reminder = new Reminder(this);
-                // ToDo create new reminders
-                AutoReminders.Add(reminder);
+                while (AutoReminders.Count < MinimalAutoRemindersCount)
+                {
+                    var nextTime = GetNextRemindTime();
+                    var reminder = new Reminder(this, nextTime);
+                    AutoReminders.Add(reminder);
+                    StartingTime = nextTime;
+                }
             }
+        }
+
+        public void SetAutoAddTimes(int hours, int days, int months, int years)
+        {
+            AutoAddHours = hours;
+            AutoAddDays = days;
+            AutoAddMonths = months;
+            AutoAddYears = years;
+        }
+
+        protected virtual DateTimeOffset GetNextRemindTime()
+        {
+            var nextTime = StartingTime
+                .AddHours(AutoAddHours)
+                .AddDays(AutoAddDays)
+                .AddMonths(AutoAddMonths)
+                .AddYears(AutoAddYears);
+            return nextTime;
         }
 
         public List<Reminder> GetAllReminders(bool withDone = true)
         {
-            // I have to convince myself that the references are still valid but i guess
             var reminders = AutoReminders.Concat(customReminders).ToList();
             if (!withDone)
             {
@@ -50,7 +77,9 @@ namespace TimePlannerUpdated
         protected virtual void SetDefaultValues()
         {
             // Set defaultvalues maybe of [json] file
-            MinimalAutoRemindersCount = 5;
+            MinimalAutoRemindersCount = 3;
+            SetAutoAddTimes(0, 1, 0, 0);
+            StartingTime = DateTimeOffset.Now;
         }
 
         public abstract void Print(bool enter);
