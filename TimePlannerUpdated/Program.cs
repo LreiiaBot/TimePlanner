@@ -38,10 +38,33 @@ namespace TimePlannerUpdated
             liste.Add(new UserTask("beschreibung yikes"));
             liste.Add(new UserTask("Essen", "nom nom nom nom nom nom nom nom nom nom nom nom"));
 
-            //TimeControlledElement.Print(liste);
-            liste.Sort(new TimeControlledElementSorter());
 
-            Selector<TimeControlledElement> test = new Selector<TimeControlledElement>(liste);
+            liste.Add(new UserTask("Butterbrot", "schmieren"));
+            liste.Add(new UserTask("Cornflakes", "einschenken"));
+            liste.Add(new UserTask("Pizza", "reinschütteln"));
+
+            //liste.Sort(new TimeControlledElementSorter());
+
+            var reminderList = new List<Reminder>();
+            foreach (var item in liste)
+            {
+                foreach (var reminder in item.GetAllReminders())
+                {
+                    reminderList.Add(reminder);
+                }
+            }
+            reminderList.Sort(new ReminderSorter());
+
+            using (Selector<Reminder> test = new Selector<Reminder>(reminderList, DoSomething))
+            {
+                test.Start();
+            }
+            //Selector<TimeControlledElement> test = new Selector<TimeControlledElement>(liste);
+        }
+
+        private void DoSomething(Reminder r)
+        {
+            r.Print(false);
         }
     }
 }

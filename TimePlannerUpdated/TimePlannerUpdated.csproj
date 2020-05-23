@@ -49,6 +49,7 @@
     <Compile Include="ConsoleListener.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="IPrintableElement.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

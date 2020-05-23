@@ -30,6 +30,13 @@ namespace TimePlannerUpdated
 
         public void Print(bool enter)
         {
+            this.PrintWithoutParent(false);
+            Console.Write(String.Empty.PadRight(3));
+            Parent.Print(true);
+        }
+
+        public void PrintWithoutParent(bool enter)
+        {
             PrintDone();
             SetTimeColor();
             PrintDeadline();
@@ -38,13 +45,6 @@ namespace TimePlannerUpdated
             {
                 Console.WriteLine();
             }
-        }
-
-        public void PrintWithParent()
-        {
-            // Not ready yet
-            this.Print(false);
-            Parent.Print(true);
         }
 
         protected virtual void SetTimeColor()
