@@ -27,6 +27,7 @@ namespace TimePlannerUpdated
             Console.CursorVisible = false;
             SetupEventListeners();
 
+            // save consoleheight
             consoleHeight = Console.WindowHeight;
             printableElementsCount = consoleHeight - 1;
         }
@@ -46,8 +47,13 @@ namespace TimePlannerUpdated
 
         public void Stop()
         {
+            // stop timer
             timer.Stop();
+
+            // stop consolelistener
             ConsoleListener.Stop();
+
+            // end selection
             run = false;
             // not sure if i have to remove the methods from the events
         }
@@ -67,46 +73,56 @@ namespace TimePlannerUpdated
 
         private void ConsoleListener_ScrollUpEvent(NativeMethods.MOUSE_EVENT_RECORD r)
         {
+            // stop the timer
             timer.Stop();
-            //if (startingIndex - 1 >= 0)
-            //{
-            //    startingIndex--;
-            //    Print();
-            //}
+
+            // if there are previous elements...
             if (startingIndex - printableElementsCount >= 0)
             {
+                // specify to show the previous elements
                 startingIndex -= printableElementsCount;
                 if (startingIndex < 0)
                 {
                     startingIndex = 0;
                 }
+
+                // print elements
                 Print();
             }
+
+            // start timer again
             timer.Start();
         }
 
         private void ConsoleListener_ScrollDownEvent(NativeMethods.MOUSE_EVENT_RECORD r)
         {
+            // stop the timer
             timer.Stop();
-            //if (elements.Count - startingIndex > printableElementsCount)
-            //{
-            //    startingIndex++;
-            //    Print();
-            //}
 
             // ToDo check if this works on every elemntscount
+            // if there are further elements...
             if (startingIndex + printableElementsCount < elements.Count)
             {
+                // specify to show the next elements
                 startingIndex += printableElementsCount;
+
+                // print elments
                 Print();
             }
+
+            // start the timer again
             timer.Start();
         }
 
         private void SetupTimer()
         {
-            timer.Interval = 10000; // 10 sec
+            // set 10 seconds timer
+            timer.Interval = 10000;
+
+            // add method to timer elapsed method
             timer.Elapsed += Timer_Tick;
+
+            // start timer
             timer.Start();
         }
 
@@ -117,35 +133,52 @@ namespace TimePlannerUpdated
 
         private void ConsoleListener_ClickEvent(NativeMethods.MOUSE_EVENT_RECORD r)
         {
+            // get clicked row
             clickedRow = r.dwMousePosition.Y;
+            // if clicked row is valid...
             if (clickedRow >= 0 && clickedRow + startingIndex < elements.Count && clickedRow < printableElementsCount)
             {
+                // identify clicked element
                 selected = elements[clickedRow + startingIndex];
+                // stop all timers, listeners, etc
                 Stop();
 
+                // clear the console
                 Console.Clear();
+                // execute the given method on the clicked element
                 onSelectedReference(selected);
             }
         }
 
         public void Print()
         {
+            // set windowheight like start of selection that there is enough space for everything
             Console.WindowHeight = consoleHeight;
             Console.ResetColor();
             Console.Clear();
+
+            // for every element that is in range to be shown...
             for (int i = startingIndex; i < printableElementsCount + startingIndex && i < elements.Count; i++)
             {
                 Console.ResetColor();
+
+                // print line number
                 Console.Write((i + 1).ToString().PadRight(5));
+
+                // print the element with linebrak
                 elements[i].Print(true);
             }
+
+            // print the count of all elements
             Console.WriteLine($"There are {elements.Count} Elements");
+
+            // place cursor at top to scroll up and all is visible
             Console.CursorTop = 0;
         }
 
         public void Dispose()
         {
-            Console.WriteLine("dispose");
+
         }
     }
 }
