@@ -34,7 +34,6 @@ namespace TimePlannerUpdated
 
         public override void Print(bool enter)
         {
-            var hasTitle = false;
             var spaceForDescription = SpaceForTitleAndDescription;
 
             // If there is a title
@@ -42,10 +41,7 @@ namespace TimePlannerUpdated
             {
                 spaceForDescription -= SpaceForTitle;
                 spaceForDescription -= SpaceBetween;
-                hasTitle = true;
-            }
-            if (hasTitle)
-            {
+
                 var resultTitle = Title.ToSetLength(SpaceForTitle);
                 SetConsoleColor(resultTitle.Item2);
                 Console.Write(resultTitle.Item1);
