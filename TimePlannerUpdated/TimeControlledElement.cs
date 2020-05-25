@@ -10,7 +10,7 @@ namespace TimePlannerUpdated
 
         public int MinimalAutoRemindersCount { get; set; }
 
-        public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
+        private List<Reminder> autoReminders = new List<Reminder>();
         private List<Reminder> customReminders = new List<Reminder>();
 
         public int AutoAddHours { get; set; }
@@ -35,11 +35,11 @@ namespace TimePlannerUpdated
             // only if startingtime is "set" and at least one of hours days and months years is > 0
             if (AutoAddHours > 0 || AutoAddDays > 0 || AutoAddMonths > 0 || AutoAddYears > 0)
             {
-                while (AutoReminders.Count < MinimalAutoRemindersCount)
+                while (autoReminders.Count < MinimalAutoRemindersCount)
                 {
                     var nextTime = GetNextRemindTime();
                     var reminder = new Reminder(this, nextTime);
-                    AutoReminders.Add(reminder);
+                    autoReminders.Add(reminder);
                     StartingTime = nextTime;
                 }
             }
@@ -65,7 +65,7 @@ namespace TimePlannerUpdated
 
         public List<Reminder> GetAllReminders(bool withDone = true)
         {
-            var reminders = AutoReminders.Concat(customReminders).ToList();
+            var reminders = autoReminders.Concat(customReminders).ToList();
             if (!withDone)
             {
                 reminders = reminders.Where((item) => !item.Done).ToList();
