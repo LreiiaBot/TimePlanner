@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Timers;
 
 namespace TimePlannerUpdated
 {
     class MainViewModel
     {
         private List<TimeControlledElement> liste = new List<TimeControlledElement>();
-        private Timer timer = new Timer();
         public MainViewModel()
         {
-
             ConsoleListener.Setup();
 
             // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
@@ -40,26 +37,30 @@ namespace TimePlannerUpdated
             liste.Add(new UserTask("Cornflakes", "einschenken"));
             liste.Add(new UserTask("Pizza", "reinschütteln"));
 
+            liste.Add(new TaskList("Gebdat", "contains all birthdays of the people I know."));
+
             //liste.Sort(new TimeControlledElementSorter());
 
             var reminderList = new List<Reminder>();
             foreach (var item in liste)
             {
-                foreach (var reminder in item.GetAllReminders())
+                foreach (var reminder in item.GetAllReminders(true))
                 {
                     reminderList.Add(reminder);
                 }
             }
             reminderList.Sort(new ReminderSorter());
 
-            using (Selector<Reminder> test = new Selector<Reminder>(reminderList, DoSomething))
+            using (Selector<Reminder> test = new Selector<Reminder>(reminderList))
             {
+                test.OnSelected += DoSomething;
                 test.Start();
             }
             //Selector<TimeControlledElement> test = new Selector<TimeControlledElement>(liste);
         }
-        private void DoSomething(Reminder r)
+        private void DoSomething(object sender, EventArgs e)
         {
+            var r = (Reminder)sender;
             r.Print(false);
         }
     }

@@ -51,7 +51,7 @@ namespace TimePlannerUpdated
         private Reminder GetNextUndoneReminder(TimeControlledElement element)
         {
             Reminder min = null;
-            var reminders = element.GetAllReminders();
+            var reminders = element.GetAllReminders(false);
 
             if (reminders.Count != 0)
             {

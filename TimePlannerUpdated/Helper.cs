@@ -31,9 +31,9 @@ namespace TimePlannerUpdated
             }
             else
             {
-                output = input;
+                output = input.PadRight(maxSpace);
             }
-            return new Tuple<string, bool>(output.PadRight(maxSpace), fitsIn);
+            return new Tuple<string, bool>(output, fitsIn);
         }
 
         public static bool IsInThePast(this DateTimeOffset date)

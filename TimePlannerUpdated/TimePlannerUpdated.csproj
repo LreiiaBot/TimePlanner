@@ -57,6 +57,7 @@
     <Compile Include="Reminder.cs" />
     <Compile Include="ReminderSorter.cs" />
     <Compile Include="Selector.cs" />
+    <Compile Include="TaskList.cs" />
     <Compile Include="TimeControlledElement.cs" />
     <Compile Include="TimeControlledElementSorter.cs" />
     <Compile Include="UserTask.cs" />

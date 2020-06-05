@@ -17,7 +17,10 @@ namespace TimePlannerUpdated
         public int AutoAddDays { get; set; }
         public int AutoAddMonths { get; set; }
         public int AutoAddYears { get; set; }
-        // int autoAddDays, autoAddMonths, autoAddYears
+
+        public int SpaceForTitle { get; set; }
+        public int SpaceBetween { get; set; }
+        public int SpaceForTitleAndDescription { get; set; }
 
         public TimeControlledElement()
         {
@@ -63,7 +66,7 @@ namespace TimePlannerUpdated
             return nextTime;
         }
 
-        public List<Reminder> GetAllReminders(bool withDone = true)
+        public List<Reminder> GetAllReminders(bool withDone)
         {
             var reminders = autoReminders.Concat(customReminders).ToList();
             if (!withDone)
@@ -80,6 +83,11 @@ namespace TimePlannerUpdated
             MinimalAutoRemindersCount = 3;
             SetAutoAddTimes(0, 1, 0, 0);
             StartingTime = DateTimeOffset.Now;
+
+
+            SpaceForTitle = 10;
+            SpaceForTitleAndDescription = 30;
+            SpaceBetween = 1;
         }
 
         public abstract void Print(bool enter);

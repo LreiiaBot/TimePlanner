@@ -6,8 +6,7 @@ namespace TimePlannerUpdated
 {
     internal class Selector<T> : IDisposable where T : class, IPrintableElement
     {
-        public delegate void OnSelectedHandler(T element);
-        private OnSelectedHandler onSelectedReference; // maybe better name
+        public event EventHandler OnSelected;
 
         private List<T> elements;
         private T selected;
@@ -20,10 +19,9 @@ namespace TimePlannerUpdated
         private int consoleHeight;
 
         private Timer timer = new Timer();
-        public Selector(List<T> elements, OnSelectedHandler onSelected)
+        public Selector(List<T> elements)
         {
             this.elements = elements;
-            this.onSelectedReference = onSelected;
             Console.CursorVisible = false;
             SetupEventListeners();
 
@@ -146,7 +144,7 @@ namespace TimePlannerUpdated
                 // clear the console
                 Console.Clear();
                 // execute the given method on the clicked element
-                onSelectedReference(selected);
+                OnSelected?.Invoke(selected, EventArgs.Empty);
             }
         }
 

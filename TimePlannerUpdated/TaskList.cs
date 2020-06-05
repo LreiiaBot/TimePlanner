@@ -1,30 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TimePlannerUpdated
 {
-    class UserTask : TimeControlledElement
+    class TaskList : TimeControlledElement
     {
-        public string Title { get; set; } = String.Empty;
+        public List<UserTask> Tasks { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
 
-        public UserTask(string description) : base()
+        public TaskList(string title, string description)
         {
+            Title = title;
             Description = description;
         }
 
-        public UserTask(string title, string description) : this(description)
+        public List<Reminder> GetAllTaskReminders(bool withDone)
         {
-            Title = title;
-        }
-
-        public UserTask(string title, string description, DateTimeOffset date) : this(title, description)
-        {
-            StartingTime = date;
-        }
-
-        public UserTask(string title, string description, DateTimeOffset date, int hours, int days, int months, int years) : this(title, description, date)
-        {
-            SetAutoAddTimes(hours, days, months, years);
+            var reminderList = new List<Reminder>();
+            foreach (var item in Tasks)
+            {
+                foreach (var reminder in item.GetAllReminders(withDone))
+                {
+                    reminderList.Add(reminder);
+                }
+            }
+            reminderList.Sort(new ReminderSorter());
+            return reminderList;
         }
 
         public override void Print(bool enter)
@@ -67,13 +69,14 @@ namespace TimePlannerUpdated
         private void SetConsoleColor(bool isOk)
         {
             Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Black;
             if (isOk)
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.BackgroundColor = ConsoleColor.Yellow;
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.BackgroundColor = ConsoleColor.Red;
             }
         }
 
