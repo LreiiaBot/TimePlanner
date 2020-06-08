@@ -50,6 +50,8 @@
     <Compile Include="Helper.cs" />
     <Compile Include="IPrintableElement.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuPoint.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
