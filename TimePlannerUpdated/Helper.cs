@@ -50,5 +50,11 @@ namespace TimePlannerUpdated
         {
             return date.Subtract(DateTimeOffset.Now);
         }
+
+        public static void Write(string text, ConsoleColor foreGround = ConsoleColor.White)
+        {
+            Console.ForegroundColor = foreGround;
+            Console.Write(text);
+        }
     }
 }

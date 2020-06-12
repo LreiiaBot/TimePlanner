@@ -46,9 +46,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="ConsoleListener.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="IPrintableElement.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuPoint.cs" />
