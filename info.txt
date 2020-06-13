@@ -2,3 +2,10 @@ Protocol when
 list changed/created/deleted
 task changed/created/deleted
 task moved
+
+
+on boot select inbox
+on boot show selectedList
+
+normally inserted -> in current inbox
+with '/' before -> it is a command
