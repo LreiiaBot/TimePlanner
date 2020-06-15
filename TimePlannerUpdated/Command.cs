@@ -2,7 +2,7 @@
 
 namespace TimePlannerUpdated
 {
-    class Command // : MenuPoint
+    class Command
     {
         public static Command[] Commands { get; set; } =
         {
@@ -20,13 +20,13 @@ namespace TimePlannerUpdated
             new Command("exit", "closes the application"),
             new Command("test", "no", "arg1", "arg2", "arg3", "arg4")
         };
-        public string Cmd { get; set; } = "none";
+        public string Name { get; set; } = "none";
         public string Definition { get; set; } = "none";
         public string[] Arguments { get; set; } = new string[0];
 
-        public Command(string cmd, string definition)
+        public Command(string name, string definition)
         {
-            Cmd = cmd;
+            Name = name;
             Definition = definition;
         }
 
@@ -67,14 +67,14 @@ namespace TimePlannerUpdated
                 {
                     padArgs = argsLenth;
                 }
-                if (cmd.Cmd.Length > padName)
+                if (cmd.Name.Length > padName)
                 {
-                    padName = cmd.Cmd.Length;
+                    padName = cmd.Name.Length;
                 }
             }
             foreach (var cmd in Commands)
             {
-                Helper.Write($"{cmd.Cmd.PadRight(padName)} ", ConsoleColor.DarkGray);
+                Helper.Write($"{cmd.Name.PadRight(padName)} ", ConsoleColor.DarkGray);
                 cmd.PrintArguments(padArgs);
                 Helper.Write($" | {cmd.Definition}\n");
             }

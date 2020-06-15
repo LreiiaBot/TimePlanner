@@ -9,7 +9,7 @@ namespace TimePlannerUpdated
         {
             List<MenuPoint> points = new List<MenuPoint>()
             {
-                new MenuPoint("", null)
+                new MenuPoint("test", null)
             };
             menu = new Menu("Selection", points);
         }
