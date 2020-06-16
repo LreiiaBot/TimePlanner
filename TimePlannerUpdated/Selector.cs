@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace TimePlannerUpdated
 {
@@ -10,6 +11,8 @@ namespace TimePlannerUpdated
         private List<T> elements;
 
         private bool run = false;
+
+        private Timer timer;
 
         private int selectedRow = 0;
         private int startingIndex = 0;
@@ -24,6 +27,8 @@ namespace TimePlannerUpdated
             // save consoleheight
             consoleHeight = Console.WindowHeight;
             printableElementsCount = consoleHeight - 1;
+
+            SetupTimer();
         }
 
         public void Start()
@@ -68,8 +73,22 @@ namespace TimePlannerUpdated
 
         public void Stop()
         {
+            timer.Stop();
+
             // end selection
             run = false;
+        }
+
+        private void SetupTimer()
+        {
+            timer = new Timer(10000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Print();
         }
 
         ~Selector()
