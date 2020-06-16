@@ -4,20 +4,17 @@ namespace TimePlannerUpdated
 {
     class MainViewModel
     {
+        public TaskList SelectedList { get; set; }
         private List<TimeControlledElement> liste = new List<TimeControlledElement>();
+
+        public string CommandSign { get; set; } = "/";
+        public string LineDelimiter { get; set; } = "$ ";
+
+        public bool End { get; set; } = false;
+
         public MainViewModel()
         {
             LoadList();
-            ConsoleListener.Setup();
-
-            // https://stackoverflow.com/questions/31750770/difference-between-datetimeoffsetnullable-and-datetimeoffset-now
-
-            var menuPoins = new List<MenuPoint>()
-            {
-                new MenuPoint("show", Show),
-                new MenuPoint("end", End)
-            };
-            new Menu("AUSWAHL", menuPoins).Run();
         }
 
         private void LoadList()
@@ -25,14 +22,29 @@ namespace TimePlannerUpdated
             liste = new List<TimeControlledElement>();
         }
 
-        private void Show()
+        public void ReactToInput(string input)
         {
-            System.Console.WriteLine("yike show");
+            input = input.Trim();
+            if (IsCommand(input))
+            {
+                // react to command
+                foreach (var cmd in Command.Commands)
+                {
+                    if (cmd.Name.Equals(input.Substring(CommandSign.Length)))
+                    {
+                        // normally i would somehow check arguments count and execute
+                        System.Console.WriteLine(cmd.Definition);
+                    }
+                }
+            }
+            else
+            {
+                // insert to sellist
+            }
         }
-
-        private void End()
+        private bool IsCommand(string input)
         {
-            System.Console.WriteLine("end");
+            return input.StartsWith(CommandSign);
         }
     }
 }
