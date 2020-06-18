@@ -5,7 +5,7 @@ namespace TimePlannerUpdated
 {
     class TaskList : TimeControlledElement
     {
-        public List<UserTask> Tasks { get; set; }
+        public List<UserTask> Tasks { get; set; } = new List<UserTask>();
         public string Title { get; set; }
         public string Description { get; set; }
 

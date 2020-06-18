@@ -9,8 +9,6 @@ namespace TimePlannerUpdated
         {
             // maybe somehow as ressouce?
             mvm = new MainViewModel();
-
-            mvm.SelectedList = new TaskList("inbox", "all new tasks are safed here");
         }
 
         public void Run()
@@ -18,7 +16,7 @@ namespace TimePlannerUpdated
             do
             {
                 PrintLineStart();
-                Console.ForegroundColor = ConsoleColor.White;
+                SetInputColor();
                 var input = Console.ReadLine();
                 mvm.ReactToInput(input);
             } while (!mvm.End);
@@ -26,8 +24,22 @@ namespace TimePlannerUpdated
 
         private void PrintLineStart()
         {
+            Console.ResetColor();
             Helper.Write(mvm.SelectedList.Title, ConsoleColor.DarkYellow);
             Helper.Write(mvm.LineDelimiter, ConsoleColor.Green);
+        }
+
+        private void SetInputColor()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            if (mvm.Hide)
+            {
+                Console.ForegroundColor = Console.BackgroundColor;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
     }
 }
