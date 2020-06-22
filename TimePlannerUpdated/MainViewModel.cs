@@ -6,7 +6,7 @@ namespace TimePlannerUpdated
     class MainViewModel
     {
         public TaskList SelectedList { get; set; }
-        private List<TaskList> liste = new List<TaskList>();
+        private List<TaskList> lists = new List<TaskList>();
 
         public string CommandSign { get; set; } = "/";
         public string LineDelimiter { get; set; } = "$ ";
@@ -14,79 +14,39 @@ namespace TimePlannerUpdated
 
         public bool End { get; set; } = false;
 
+
         public MainViewModel()
         {
             LoadList();
+            LoadCommands();
+        }
+
+        private void LoadCommands()
+        {
+            Command.Commands[0].OnSelected += Help;
         }
 
         private void LoadList()
         {
-            liste = new List<TaskList>();
+            lists = new List<TaskList>();
 
             SelectedList = new TaskList("inbox", "all new tasks are safed here");
-            liste.Add(SelectedList);
+            lists.Add(SelectedList);
+        }
+
+        private void Help(object sender, EventArgs e)
+        {
+            var args = (CommandArgs)e;
+            Command.PrintAllCommands();
         }
 
         public void ReactToInput(string input)
         {
             input = input.Trim();
-            bool isKnownCommand = false;
             if (IsCommand(input))
             {
-                foreach (var cmd in Command.Commands)
-                {
-                    if (input.Substring(CommandSign.Length).StartsWith(cmd.Name))
-                    {
-                        // if there are no args (removed cmd-name from input and checked if there is something left)
-                        if (String.IsNullOrWhiteSpace(input.Substring(CommandSign.Length).Substring(cmd.Name.Length)))
-                        {
-                            if (cmd.Arguments.Length == 0)
-                            {
-                                switch (cmd.Name)
-                                {
-                                    case "help":
-                                        Command.PrintAllCommands();
-                                        break;
-                                    case "view lists":
-                                        TaskList.Print(liste);
-                                        Console.WriteLine();
-                                        break;
-                                    case "select list":
-                                        Console.WriteLine("maybe only with parameter or now use selector");
-                                        break;
-                                    case "alter list":
-                                        break;
-                                    case "view tasks":
-                                        break;
-                                    case "move task":
-                                        Console.WriteLine("mabye only with parameters or now selector");
-                                        break;
-                                    case "hide":
-                                        Hide = !Hide;
-                                        break;
-                                    case "exit":
-                                        End = true;
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("This command requires arguments!");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("not working yet");
-                            // switch case
-                        }
-                        isKnownCommand = true;
-                        break;
-                    }
-                }
-                if (!isKnownCommand)
-                {
-                    Console.WriteLine(">>unknown command<<");
-                }
+                input = input.Substring(1);
+                Command.ExecuteInsertedCommand(input);
             }
             else
             {
@@ -100,6 +60,18 @@ namespace TimePlannerUpdated
         private bool IsCommand(string input)
         {
             return input.StartsWith(CommandSign);
+        }
+
+        private void SelectList()
+        {
+            var sel = new Selector<TaskList>(lists);
+            sel.OnSelected += Sel_OnSelected;
+            sel.Start();
+        }
+
+        private void Sel_OnSelected(object sender, EventArgs e)
+        {
+            SelectedList = (TaskList)sender;
         }
     }
 }

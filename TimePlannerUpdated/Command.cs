@@ -9,7 +9,7 @@ namespace TimePlannerUpdated
             new Command("help", "shows this list of helpcommands"),
             new Command("view lists", "lists all available lists"),
             new Command("create list", "creates a list", "listname"),
-            new Command("select list", "selects the given list", "listname"),
+            new Command("select list", "lets you select a list"),
             new Command("alter list", "makes you able to change the selected list"),
             new Command("alter list", "makes you able to change a list", "listname"),
             new Command("view tasks", "shows the tasks of the currently selected list"),
@@ -20,9 +20,11 @@ namespace TimePlannerUpdated
             new Command("exit", "closes the application"),
             new Command("test", "no", "arg1", "arg2", "arg3", "arg4")
         };
+        public event EventHandler OnSelected;
         public string Name { get; set; } = "none";
         public string Definition { get; set; } = "none";
         public string[] Arguments { get; set; } = new string[0];
+
 
         public Command(string name, string definition)
         {
@@ -78,6 +80,51 @@ namespace TimePlannerUpdated
                 cmd.PrintArguments(padArgs);
                 Helper.Write($" | {cmd.Definition}\n");
             }
+        }
+
+        public static void ExecuteInsertedCommand(string input)
+        {
+            Command selCmd = null;
+            string[] args = null;
+            foreach (var cmd in Commands)
+            {
+                if (input.StartsWith(cmd.Name))
+                {
+                    args = cmd.GetArguments(input);
+                    if (cmd.Arguments.Length == args.Length)
+                    {
+                        selCmd = cmd;
+                        break;
+                    }
+                    else
+                    {
+                        args = null;
+                    }
+                }
+            }
+
+            if (selCmd != null)
+            {
+                if (args != null)
+                {
+                    selCmd.OnSelected?.Invoke(selCmd, new CommandArgs(args));
+                }
+                else
+                {
+                    selCmd.OnSelected?.Invoke(selCmd, EventArgs.Empty);
+                }
+            }
+        }
+
+        public string[] GetArguments(string input)
+        {
+            var argsStr = input.Substring(Name.Length).Trim();
+            string[] args = new string[0];
+            if (!String.IsNullOrWhiteSpace(argsStr))
+            {
+                args = argsStr.Split(' ');
+            }
+            return args;
         }
     }
 }
