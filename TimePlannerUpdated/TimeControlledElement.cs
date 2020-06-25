@@ -110,7 +110,7 @@ namespace TimePlannerUpdated
         {
             foreach (var element in elements)
             {
-                element.Print(false);
+                element.Print(true);
             }
         }
 

@@ -108,6 +108,10 @@ namespace TimePlannerUpdated
             {
                 selCmd.OnSelected?.Invoke(selCmd, new CommandArgs(args));
             }
+            else
+            {
+                Console.WriteLine("invalid command, maybe show this message differently");
+            }
         }
 
         public string[] GetArguments(string input)

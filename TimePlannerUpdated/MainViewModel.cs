@@ -24,6 +24,8 @@ namespace TimePlannerUpdated
         private void LoadCommands()
         {
             Command.Commands[0].OnSelected += Help;
+            Command.Commands[1].OnSelected += ViewLists;
+            Command.Commands[2].OnSelected += CreateList;
         }
 
         private void LoadList()
@@ -37,6 +39,15 @@ namespace TimePlannerUpdated
         private void Help(Command command, CommandArgs args)
         {
             Command.PrintAllCommands();
+        }
+        private void ViewLists(Command command, CommandArgs args)
+        {
+            TaskList.Print(lists);
+        }
+        private void CreateList(Command command, CommandArgs args)
+        {
+            var list = new TaskList(args.Arguments[0], String.Empty);
+            lists.Add(list);
         }
 
         public void ReactToInput(string input)
