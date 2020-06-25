@@ -34,9 +34,8 @@ namespace TimePlannerUpdated
             lists.Add(SelectedList);
         }
 
-        private void Help(object sender, EventArgs e)
+        private void Help(Command command, CommandArgs args)
         {
-            var args = (CommandArgs)e;
             Command.PrintAllCommands();
         }
 

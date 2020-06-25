@@ -20,7 +20,8 @@ namespace TimePlannerUpdated
             new Command("exit", "closes the application"),
             new Command("test", "no", "arg1", "arg2", "arg3", "arg4")
         };
-        public event EventHandler OnSelected;
+        public delegate void CommandExecuteHandler(Command command, CommandArgs args);
+        public event CommandExecuteHandler OnSelected;
         public string Name { get; set; } = "none";
         public string Definition { get; set; } = "none";
         public string[] Arguments { get; set; } = new string[0];
@@ -105,14 +106,7 @@ namespace TimePlannerUpdated
 
             if (selCmd != null)
             {
-                if (args != null)
-                {
-                    selCmd.OnSelected?.Invoke(selCmd, new CommandArgs(args));
-                }
-                else
-                {
-                    selCmd.OnSelected?.Invoke(selCmd, EventArgs.Empty);
-                }
+                selCmd.OnSelected?.Invoke(selCmd, new CommandArgs(args));
             }
         }
 
