@@ -10,6 +10,7 @@ namespace TimePlannerUpdated
             new Command("view lists", "lists all available lists"),
             new Command("create list", "creates a list", "listname"),
             new Command("select list", "lets you select a list"),
+            new Command("select list", "lets you select a list", "listname"),
             new Command("alter list", "makes you able to change the selected list"),
             new Command("alter list", "makes you able to change a list", "listname"),
             new Command("view tasks", "shows the tasks of the currently selected list"),

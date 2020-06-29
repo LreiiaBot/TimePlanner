@@ -26,6 +26,42 @@ namespace TimePlannerUpdated
             Command.Commands[0].OnSelected += Help;
             Command.Commands[1].OnSelected += ViewLists;
             Command.Commands[2].OnSelected += CreateList;
+            Command.Commands[3].OnSelected += SelectList;
+            Command.Commands[4].OnSelected += SelectList;
+        }
+
+        private void SelectList(Command command, CommandArgs args)
+        {
+            if (args.Arguments.Length == 1)
+            {
+                var selected = false;
+                foreach (var list in lists)
+                {
+                    if (list.Title == args.Arguments[0])
+                    {
+                        SelectedList = list;
+                        selected = true;
+                        break;
+                    }
+                }
+                if (!selected)
+                {
+                    Console.WriteLine($"A list with the name '{args.Arguments[0]}' doesn´t exist.");
+                }
+            }
+            else
+            {
+                var selector = new Selector<TaskList>(lists);
+                selector.OnSelected += Sel_OnSelected;
+                selector.Start();
+                Console.ResetColor();
+                Console.Clear();
+            }
+        }
+
+        private void Sel_OnSelected(object sender, EventArgs e)
+        {
+            SelectedList = (TaskList)sender;
         }
 
         private void LoadList()
@@ -70,18 +106,6 @@ namespace TimePlannerUpdated
         private bool IsCommand(string input)
         {
             return input.StartsWith(CommandSign);
-        }
-
-        private void SelectList()
-        {
-            var sel = new Selector<TaskList>(lists);
-            sel.OnSelected += Sel_OnSelected;
-            sel.Start();
-        }
-
-        private void Sel_OnSelected(object sender, EventArgs e)
-        {
-            SelectedList = (TaskList)sender;
         }
     }
 }

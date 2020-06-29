@@ -63,7 +63,7 @@ namespace TimePlannerUpdated
                 case ConsoleKey.Enter:
                 case ConsoleKey.Spacebar:
                     Selected();
-                    run = false;
+                    Stop();
                     break;
                 default:
                     break;
@@ -74,6 +74,8 @@ namespace TimePlannerUpdated
         public void Stop()
         {
             timer.Stop();
+
+            Console.CursorVisible = true;
 
             // end selection
             run = false;
