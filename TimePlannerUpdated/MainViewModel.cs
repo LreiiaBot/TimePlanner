@@ -28,6 +28,33 @@ namespace TimePlannerUpdated
             Command.Commands[2].OnSelected += CreateList;
             Command.Commands[3].OnSelected += SelectList;
             Command.Commands[4].OnSelected += SelectList;
+            Command.Commands[5].OnSelected += AlterList;
+            Command.Commands[6].OnSelected += AlterList;
+            Command.Commands[7].OnSelected += ViewTasks;
+            Command.Commands[8].OnSelected += ViewTasks;
+        }
+
+        private void ViewTasks(Command command, CommandArgs args)
+        {
+            TaskList showList = SelectedList;
+            if (args.Arguments.Length == 1)
+            {
+                foreach (var list in this.lists)
+                {
+                    if (list.Title == args.Arguments[0])
+                    {
+                        showList = list;
+                    }
+                }
+            }
+
+            showList.PrintWithReminders(true);
+            //TaskList.Print(showList.Tasks);
+        }
+
+        private void AlterList(Command command, CommandArgs args)
+        {
+            Console.WriteLine("not working lol");
         }
 
         private void SelectList(Command command, CommandArgs args)
