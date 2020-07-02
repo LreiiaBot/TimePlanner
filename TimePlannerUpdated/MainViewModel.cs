@@ -32,6 +32,10 @@ namespace TimePlannerUpdated
             Command.Commands[6].OnSelected += AlterList;
             Command.Commands[7].OnSelected += ViewTasks;
             Command.Commands[8].OnSelected += ViewTasks;
+            //Command.Commands[9].OnSelected += MoveTask;
+            //Command.Commands[10].OnSelected += SelectTask;
+            //Command.Commands[11].OnSelected += Hide;
+            Command.Commands[12].OnSelected += Exit;
         }
 
         private void ViewTasks(Command command, CommandArgs args)
@@ -111,6 +115,11 @@ namespace TimePlannerUpdated
         {
             var list = new TaskList(args.Arguments[0], String.Empty);
             lists.Add(list);
+        }
+
+        private void Exit(Command command, CommandArgs args)
+        {
+            End = true;
         }
 
         public void ReactToInput(string input)
