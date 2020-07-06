@@ -34,7 +34,7 @@ namespace TimePlannerUpdated
             Command.Commands[8].OnSelected += ViewTasks;
             //Command.Commands[9].OnSelected += MoveTask;
             //Command.Commands[10].OnSelected += SelectTask;
-            //Command.Commands[11].OnSelected += Hide;
+            Command.Commands[11].OnSelected += ToggleHide;
             Command.Commands[12].OnSelected += Exit;
         }
 
@@ -120,6 +120,11 @@ namespace TimePlannerUpdated
         private void Exit(Command command, CommandArgs args)
         {
             End = true;
+        }
+
+        private void ToggleHide(Command command, CommandArgs args)
+        {
+            Hide = !Hide;
         }
 
         public void ReactToInput(string input)
