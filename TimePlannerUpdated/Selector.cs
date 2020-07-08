@@ -6,7 +6,8 @@ namespace TimePlannerUpdated
 {
     internal class Selector<T> : IDisposable where T : class, IPrintableElement
     {
-        public event EventHandler OnSelected;
+        public delegate void SelectedHandler(object sender, SelectEventArgs<T> e);
+        public event SelectedHandler OnSelected;
 
         private List<T> elements;
 
@@ -159,7 +160,7 @@ namespace TimePlannerUpdated
                 // clear the console
                 Console.Clear();
                 // execute the given method on the clicked element
-                OnSelected?.Invoke(selected, EventArgs.Empty);
+                OnSelected?.Invoke(this, new SelectEventArgs<T>(selected));
             }
         }
 

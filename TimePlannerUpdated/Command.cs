@@ -15,6 +15,7 @@ namespace TimePlannerUpdated
             new Command("alter list", "makes you able to change a list", "listname"),
             new Command("view tasks", "shows the tasks of the currently selected list"),
             new Command("view tasks", "shows the tasks of the given list", "listname"),
+            new Command("move task", "moves the task to a list"),
             new Command("move task", "moves the task to a list", "taskid", "listname"),
             new Command("select task", "selects one task from the list and makes further actions possible"),
             new Command("hide", "makes the input to the console invisible"),

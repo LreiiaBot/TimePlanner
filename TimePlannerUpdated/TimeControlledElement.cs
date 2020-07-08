@@ -66,7 +66,7 @@ namespace TimePlannerUpdated
             return nextTime;
         }
 
-        public List<Reminder> GetAllReminders(bool withDone)
+        public virtual List<Reminder> GetAllReminders(bool withDone)
         {
             var reminders = autoReminders.Concat(customReminders).ToList();
             if (!withDone)

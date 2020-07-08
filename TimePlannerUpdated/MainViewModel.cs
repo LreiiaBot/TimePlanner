@@ -32,10 +32,11 @@ namespace TimePlannerUpdated
             Command.Commands[6].OnSelected += AlterList;
             Command.Commands[7].OnSelected += ViewTasks;
             Command.Commands[8].OnSelected += ViewTasks;
-            //Command.Commands[9].OnSelected += MoveTask;
-            //Command.Commands[10].OnSelected += SelectTask;
-            Command.Commands[11].OnSelected += ToggleHide;
-            Command.Commands[12].OnSelected += Exit;
+            Command.Commands[9].OnSelected += MoveTask;
+            Command.Commands[10].OnSelected += MoveTask;
+            //Command.Commands[11].OnSelected += SelectTask;
+            Command.Commands[12].OnSelected += ToggleHide;
+            Command.Commands[13].OnSelected += Exit;
         }
 
         private void ViewTasks(Command command, CommandArgs args)
@@ -53,7 +54,27 @@ namespace TimePlannerUpdated
             }
 
             showList.PrintWithReminders(true);
-            //TaskList.Print(showList.Tasks);
+        }
+
+        private void MoveTask(Command command, CommandArgs args)
+        {
+            UserTask selectedTask = null;
+            var selectTask = new Selector<UserTask>(SelectedList.Tasks);
+            selectTask.OnSelected += (object sender, SelectEventArgs<UserTask> e) =>
+            {
+                selectedTask = e.SelectedElement;
+            };
+            selectTask.Start();
+
+            var selectList = new Selector<TaskList>(lists);
+            selectList.OnSelected += (object sender, SelectEventArgs<TaskList> e) =>
+            {
+                SelectedList.Tasks.Remove(selectedTask);
+                e.SelectedElement.Tasks.Add(selectedTask);
+            };
+            selectList.Start();
+
+            // ToDo create solution with parameters (/move task sometask somelist)
         }
 
         private void AlterList(Command command, CommandArgs args)
@@ -83,16 +104,14 @@ namespace TimePlannerUpdated
             else
             {
                 var selector = new Selector<TaskList>(lists);
-                selector.OnSelected += Sel_OnSelected;
+                selector.OnSelected += (object sender, SelectEventArgs<TaskList> e) =>
+                {
+                    SelectedList = e.SelectedElement;
+                };
                 selector.Start();
                 Console.ResetColor();
                 Console.Clear();
             }
-        }
-
-        private void Sel_OnSelected(object sender, EventArgs e)
-        {
-            SelectedList = (TaskList)sender;
         }
 
         private void LoadList()

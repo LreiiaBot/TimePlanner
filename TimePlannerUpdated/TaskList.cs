@@ -66,6 +66,20 @@ namespace TimePlannerUpdated
             PrintReminders(withDone);
         }
 
+        public override List<Reminder> GetAllReminders(bool withDone)
+        {
+            var reminders = base.GetAllReminders(withDone);
+            foreach (var task in Tasks)
+            {
+                foreach (var reminder in task.GetAllReminders(withDone))
+                {
+                    reminders.Add(reminder);
+                }
+            }
+            reminders.Sort(new ReminderSorter());
+            return reminders;
+        }
+
         private void SetConsoleColor(bool isOk)
         {
             Console.ResetColor();

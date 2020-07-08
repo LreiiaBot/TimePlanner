@@ -61,6 +61,7 @@
     <Compile Include="Protocol.cs" />
     <Compile Include="Reminder.cs" />
     <Compile Include="ReminderSorter.cs" />
+    <Compile Include="SelectEventArgs.cs" />
     <Compile Include="Selector.cs" />
     <Compile Include="TaskList.cs" />
     <Compile Include="TimeControlledElement.cs" />
