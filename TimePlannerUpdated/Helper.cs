@@ -24,6 +24,11 @@ namespace TimePlannerUpdated
         {
             bool fitsIn = true;
             string output;
+            if (input == null)
+            {
+                input = String.Empty;
+            }
+
             if (input.Length > maxSpace)
             {
                 output = input.Substring(0, maxSpace);

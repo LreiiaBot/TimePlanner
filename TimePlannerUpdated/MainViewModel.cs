@@ -58,23 +58,37 @@ namespace TimePlannerUpdated
 
         private void MoveTask(Command command, CommandArgs args)
         {
-            UserTask selectedTask = null;
-            var selectTask = new Selector<UserTask>(SelectedList.Tasks);
-            selectTask.OnSelected += (object sender, SelectEventArgs<UserTask> e) =>
+            if (args.Arguments.Length == 0)
             {
-                selectedTask = e.SelectedElement;
-            };
-            selectTask.Start();
-
-            var selectList = new Selector<TaskList>(lists);
-            selectList.OnSelected += (object sender, SelectEventArgs<TaskList> e) =>
+                UserTask selectedTask = null;
+                var selectTask = new Selector<UserTask>(SelectedList.Tasks);
+                selectTask.OnSelected += (object sender, SelectEventArgs<UserTask> e) =>
+                {
+                    selectedTask = e.SelectedElement;
+                };
+                selectTask.Start();
+                // in select abbrechen
+                var selectList = new Selector<TaskList>(lists);
+                selectList.OnSelected += (object sender, SelectEventArgs<TaskList> e) =>
+                {
+                    SelectedList.Tasks.Remove(selectedTask);
+                    e.SelectedElement.Tasks.Add(selectedTask);
+                };
+                selectList.Start();
+            }
+            else if (args.Arguments.Length == 2)
             {
-                SelectedList.Tasks.Remove(selectedTask);
-                e.SelectedElement.Tasks.Add(selectedTask);
-            };
-            selectList.Start();
-
-            // ToDo create solution with parameters (/move task sometask somelist)
+                var taskname = args.Arguments[0];
+                var listname = args.Arguments[1];
+                var task = SelectedList.Tasks.Find((item) => item.Title == taskname);
+                var list = lists.Find((item) => item.Title == listname);
+                // ToDo error when not found
+                if (task != null && list != null)
+                {
+                    SelectedList.Tasks.Remove(task);
+                    list.Tasks.Add(task);
+                }
+            }
         }
 
         private void AlterList(Command command, CommandArgs args)

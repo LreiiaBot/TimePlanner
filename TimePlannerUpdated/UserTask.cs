@@ -7,14 +7,14 @@ namespace TimePlannerUpdated
         public string Title { get; set; } = String.Empty;
         public string Description { get; set; }
 
-        public UserTask(string description) : base()
-        {
-            Description = description;
-        }
-
-        public UserTask(string title, string description) : this(description)
+        public UserTask(string title) : base()
         {
             Title = title;
+        }
+
+        public UserTask(string title, string description) : this(title)
+        {
+            Description = description;
         }
 
         public UserTask(string title, string description, DateTimeOffset date) : this(title, description)
