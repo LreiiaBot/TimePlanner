@@ -1,4 +1,4 @@
-﻿namespace TimePlannerUpdated
+﻿namespace TimePlannerUpdated.Terminal
 {
     class Program
     {

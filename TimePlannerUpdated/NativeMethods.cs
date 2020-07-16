@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     class NativeMethods
     {

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Default
 {
     static class Helper
     {
@@ -60,6 +62,11 @@ namespace TimePlannerUpdated
         {
             Console.ForegroundColor = foreGround;
             Console.Write(text);
+        }
+
+        public static ObservableCollection<T> Convert<T>(this IEnumerable<T> original)
+        {
+            return new ObservableCollection<T>(original);
         }
     }
 }

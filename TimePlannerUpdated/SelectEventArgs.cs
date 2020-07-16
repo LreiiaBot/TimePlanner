@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     public class SelectEventArgs<T> : EventArgs
     {

@@ -1,33 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
+using TimePlannerUpdated.Default;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     class Command
     {
-        public static Command[] Commands { get; set; } =
-        {
-            new Command("help", "shows this list of helpcommands"),
-            new Command("view lists", "lists all available lists"),
-            new Command("create list", "creates a list", "listname"),
-            new Command("select list", "lets you select a list"),
-            new Command("select list", "lets you select a list", "listname"),
-            new Command("alter list", "makes you able to change the selected list"),
-            new Command("alter list", "makes you able to change a list", "listname"),
-            new Command("view tasks", "shows the tasks of the currently selected list"),
-            new Command("view tasks", "shows the tasks of the given list", "listname"),
-            new Command("move task", "moves the task to a list"),
-            new Command("move task", "moves the task to a list", "taskid", "listname"),
-            new Command("select task", "selects one task from the list and makes further actions possible"),
-            new Command("hide", "makes the input to the console invisible"),
-            new Command("exit", "closes the application"),
-            new Command("test", "no", "arg1", "arg2", "arg3", "arg4")
-        };
+        public static List<Command> Commands { get; set; }
         public delegate void CommandExecuteHandler(Command command, CommandArgs args);
         public event CommandExecuteHandler OnSelected;
         public string Name { get; set; } = "none";
         public string Definition { get; set; } = "none";
         public string[] Arguments { get; set; } = new string[0];
 
+        public static void SetupCommands(MainViewModel mvm)
+        {
+            Command command;
+            command = new Command("help", "shows this list of helpcommands");
+            command.OnSelected += mvm.Help;
+            Commands.Add(command);
+
+            command = new Command("view lists", "lists all available lists");
+            Commands.Add(command);
+
+            command = new Command("create list", "creates a list", "listname")
+            Commands.Add(command);
+
+            command = new Command("select list", "lets you select a list")
+            Commands.Add(command);
+
+            command = new Command("select list", "lets you select a list", "listname")
+            Commands.Add(command);
+
+            command = new Command("alter list", "makes you able to change the selected list")
+            Commands.Add(command);
+
+            command = new Command("alter list", "makes you able to change a list", "listname")
+            Commands.Add(command);
+
+            command = new Command("view tasks", "shows the tasks of the currently selected list")
+            Commands.Add(command);
+
+            command = new Command("view tasks", "shows the tasks of the given list", "listname")
+            Commands.Add(command);
+
+            command = new Command("move task", "moves the task to a list")
+            Commands.Add(command);
+
+            command = new Command("move task", "moves the task to a list", "taskid", "listname")
+            Commands.Add(command);
+
+            command = new Command("select task", "selects one task from the list and makes further actions possible")
+            Commands.Add(command);
+
+            command = new Command("hide", "makes the input to the console invisible");
+            Commands.Add(command);
+
+            command = new Command("exit", "closes the application")
+            Commands.Add(command);
+
+            command = new Command("exit", "closes the application")
+            Commands.Add(command);
+
+            command = new Command("test", "no", "arg1", "arg2", "arg3", "arg4");
+            Commands.Add(command);
+
+            /*Command.Commands[0].OnSelected += Help;
+            Command.Commands[1].OnSelected += ViewLists;
+            Command.Commands[2].OnSelected += CreateList;
+            Command.Commands[3].OnSelected += SelectList;
+            Command.Commands[4].OnSelected += SelectList;
+            Command.Commands[5].OnSelected += AlterList;
+            Command.Commands[6].OnSelected += AlterList;
+            Command.Commands[7].OnSelected += ViewTasks;
+            Command.Commands[8].OnSelected += ViewTasks;
+            Command.Commands[9].OnSelected += MoveTask;
+            Command.Commands[10].OnSelected += MoveTask;
+            //Command.Commands[11].OnSelected += SelectTask;
+            Command.Commands[12].OnSelected += ToggleHide;
+            Command.Commands[13].OnSelected += Exit;*/
+        }
 
         public Command(string name, string definition)
         {

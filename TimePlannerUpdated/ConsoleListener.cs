@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
-using static TimePlannerUpdated.NativeMethods;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     class ConsoleListener
     {

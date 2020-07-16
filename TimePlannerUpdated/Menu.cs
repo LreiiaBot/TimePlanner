@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     class Menu
     {

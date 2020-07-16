@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Timers;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Terminal
 {
     internal class Selector<T> : IDisposable where T : class, IPrintableElement
     {

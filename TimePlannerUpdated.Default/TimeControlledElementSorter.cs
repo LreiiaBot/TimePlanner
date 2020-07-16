@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TimePlannerUpdated
+namespace TimePlannerUpdated.Default
 {
     class TimeControlledElementSorter : IComparer<TimeControlledElement>
     {

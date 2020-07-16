@@ -1,4 +1,4 @@
-﻿namespace TimePlannerUpdated
+﻿namespace TimePlannerUpdated.Default
 {
     class Protocol
     {
