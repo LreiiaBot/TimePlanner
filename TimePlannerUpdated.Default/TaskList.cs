@@ -14,7 +14,7 @@ namespace TimePlannerUpdated.Default
             Description = description;
         }
 
-        public List<Reminder> GetAllReminders(bool withDone, bool sort = true)
+        public override List<Reminder> GetAllReminders(bool withDone, bool sort = true)
         {
             var reminders = base.GetAllReminders(withDone);
             foreach (var task in Tasks)
@@ -31,7 +31,7 @@ namespace TimePlannerUpdated.Default
             return reminders;
         }
 
-        protected void SetDefaultValues()
+        protected override void SetDefaultValues()
         {
 
         }

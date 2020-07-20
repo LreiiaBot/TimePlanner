@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace TimePlannerUpdated.Default
@@ -12,7 +13,7 @@ namespace TimePlannerUpdated.Default
         public int MinimalAutoRemindersCount { get; set; }
 
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
-        public List<Reminder> CustomReminders { get; set; } = new List<Reminder>();
+        public ObservableCollection<Reminder> CustomReminders { get; set; } = new ObservableCollection<Reminder>();
 
         public int AutoAddHours { get; set; }
         public int AutoAddDays { get; set; }
@@ -26,6 +27,7 @@ namespace TimePlannerUpdated.Default
 
         protected virtual void Init()
         {
+            SetupEvents();
             SetDefaultValues();
             AddNewAutoReminders();
         }
@@ -85,10 +87,17 @@ namespace TimePlannerUpdated.Default
             StartingTime = DateTimeOffset.Now;
         }
 
-        public virtual void AddReminder(Reminder reminder)
+        protected virtual void SetupEvents()
         {
-            reminder.Parent = this;
-            CustomReminders.Add(reminder);
+            CustomReminders.CollectionChanged += OnCustomReminderAdded;
+        }
+
+        protected virtual void OnCustomReminderAdded(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            foreach (Reminder item in e.NewItems)
+            {
+                item.Parent = this;
+            }
         }
     }
 }
