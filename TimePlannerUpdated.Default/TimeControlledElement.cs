@@ -8,6 +8,7 @@ namespace TimePlannerUpdated.Default
     // ToDo maybe console version can modify this class by adding print method - hope this wont change the wpf solution
     public abstract partial class TimeControlledElement
     {
+        public string Title { get; set; }
         public DateTimeOffset StartingTime { get; set; }
 
         public int MinimalAutoRemindersCount { get; set; }
@@ -85,6 +86,8 @@ namespace TimePlannerUpdated.Default
             MinimalAutoRemindersCount = 3;
             SetAutoAddTimes(0, 1, 0, 0);
             StartingTime = DateTimeOffset.Now;
+
+            Title = "unknow";
         }
 
         protected virtual void SetupEvents()

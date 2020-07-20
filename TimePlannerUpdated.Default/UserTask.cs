@@ -4,7 +4,6 @@ namespace TimePlannerUpdated.Default
 {
     public class UserTask : TimeControlledElement
     {
-        public string Title { get; set; } = String.Empty;
         public string Description { get; set; }
 
         public UserTask(string title) : base()
