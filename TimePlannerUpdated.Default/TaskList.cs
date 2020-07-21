@@ -32,7 +32,7 @@ namespace TimePlannerUpdated.Default
 
         protected override void SetDefaultValues()
         {
-
+            base.SetDefaultValues();
         }
     }
 }
