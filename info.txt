@@ -9,3 +9,11 @@ on boot show selectedList
 
 normally inserted -> in current inbox
 with '/' before -> it is a command
+
+
+
+-----
+
+lebenstipps
+
+jeden tag einen random anzeigen

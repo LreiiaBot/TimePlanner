@@ -66,16 +66,12 @@ namespace TimePlannerUpdated.Default
             return nextTime;
         }
 
-        public virtual List<Reminder> GetAllReminders(bool withDone, bool sort = true)
+        public virtual List<Reminder> GetAllReminders(bool withDone)
         {
             var reminders = AutoReminders.Concat(CustomReminders).ToList();
             if (!withDone)
             {
                 reminders = reminders.Where((item) => !item.Done).ToList();
-            }
-            if (sort)
-            {
-                reminders.Sort(new ReminderSorter());
             }
             return reminders;
         }

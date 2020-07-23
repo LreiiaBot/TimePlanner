@@ -13,7 +13,7 @@ namespace TimePlannerUpdated.Default
             Description = description;
         }
 
-        public override List<Reminder> GetAllReminders(bool withDone, bool sort = true)
+        public override List<Reminder> GetAllReminders(bool withDone)
         {
             var reminders = base.GetAllReminders(withDone);
             foreach (var task in Tasks)
@@ -22,10 +22,6 @@ namespace TimePlannerUpdated.Default
                 {
                     reminders.Add(reminder);
                 }
-            }
-            if (sort)
-            {
-                reminders.Sort(new ReminderSorter());
             }
             return reminders;
         }

@@ -30,7 +30,9 @@ namespace TimePlannerUpdated.Default
         private void Update()
         {
             // ToDo check if this works
-            Reminders = SelectedList?.GetAllReminders(false, true).Convert();
+            var reminderList = SelectedList?.GetAllReminders(false);
+            reminderList.Sort(new ReminderSorter());
+            Reminders = reminderList.Convert();
 
             // ToDo maybe order lists
         }
