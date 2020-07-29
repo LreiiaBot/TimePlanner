@@ -100,6 +100,9 @@ FEATURES / IDEAS
   Labels?
   ========
 
+  - bool "notify" maybe on every reminder? or task? or task has a defaultvalue every reminder inheritates it but can be changed
+	only when on the program makes beep or sets a alarm. when false no sound is made
+
 LIST EXAPLE IDEAS
 ##################
 
@@ -118,3 +121,7 @@ LIST EXAPLE IDEAS
   - life goals
 
   - "inbox" to note something and then put in the according list at evening -> to remain concentration
+
+  - "waiting for" list
+     - friend owes money
+     - coworker has to do something untill we can continue our work
