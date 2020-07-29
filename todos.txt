@@ -10,6 +10,7 @@ add new things regularly please
 REVIEW
 #######
 
+  - autoAddHours is already there, also add minutes????????
   - Remindersorter
   - TimeControlledElementSorter
 
