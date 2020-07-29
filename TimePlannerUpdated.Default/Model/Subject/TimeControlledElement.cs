@@ -9,6 +9,7 @@ namespace TimePlannerUpdated.Default
     public abstract partial class TimeControlledElement
     {
         public string Title { get; set; }
+        public string Description { get; set; }
         public DateTimeOffset StartingTime { get; set; }
 
         public int MinimalAutoRemindersCount { get; set; }
