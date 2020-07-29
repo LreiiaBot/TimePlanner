@@ -1,0 +1,119 @@
+Mark some things with "IMPORTANT" -> strg + f -> search
+
+strg + f -> "?" -> think about the found things
+
+when I think I have done it or dont need it, remove it from here
+
+add new things regularly please
+====================================
+
+REVIEW
+#######
+
+  - Remindersorter
+  - TimeControlledElementSorter
+
+Persistence
+############
+
+ TODO
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                                                                                                                          Create DB Structure
+                                                                                                                          Create SQL File
+
+                                                                                                                          START XAMPP somehow
+GUI
+####
+
+  TODO
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                                                                                                                      - create a layout on paper or something equally "lowlevel"
+
+                                                                                                                      - show time till deadline only of selected element => updated every second maybe
+
+                                                                                                                      - maybe implement some cool graphics made with aseprite
+
+                                                                                                                      - sometimes update for exapmle "task gets red when due" (on load calculate time till this happens, then start disptachertimer or something)
+
+                                                                                                                      - maybe use frames ? i think they are called like this. For example Datagrid with TimeControlledElements just take it and put it in every window where it is needed
+
+  - what do i want to display?
+
+  - which windows?
+
+  - is there a combobox to select a list which then shows all tasks of it? or the reminders?
+
+  - The mainpage takes all reminders and sorts them. Then it shows them in this order
+
+BASIC PROCEDURE
+################
+
+  TODO
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                                                                                                                      - MOVE DESCRIPTION TO TimeControlledElement!!! IMPORTANT
+
+                                                                                                                      - default value file (json, xaml, csv, db?)
+
+  - where to save all the reminders presented on the mainpage?
+
+  - even lists have reminders, obviously they have to be managed aswell (think about old tasks, create new ones and so on)
+
+  - how to add new tasks?
+  ========================
+
+    - it has to be fast! thats the point
+    - is there a default list, where tasks are added?
+    - is this done through a field on the mainwindow?
+
+FEATURES / IDEAS
+#################
+
+  Affirmations / motivational sayings / life advice
+  =======================================================
+
+    - show at least one per day (random out of a list)
+
+  Protocol
+  =========
+
+    - see when something is changed, added, removed, ... and from who, when and what
+
+  Alarm
+  ======
+
+    - access windows alarm if possible, otherwise make a beep sound or so until user clicks "noticed"
+
+  Mobile version
+  ===============
+
+    - synchronise pc and phone via tcp or something in network
+
+  Diary function
+  ===============
+
+    - maybe it is not necessary to do something for this and its already doable with the lists and tasks (list with reminder every in the evening, task with no reminder)
+
+  Labels?
+  ========
+
+LIST EXAPLE IDEAS
+##################
+
+  - birthday
+
+  - habits
+  =========
+
+    - reading
+    - meditation
+    - exercise
+    - prepare breakfast for the next day
+
+  - shopping list
+
+  - life goals
+
+  - "inbox" to note something and then put in the according list at evening -> to remain concentration
