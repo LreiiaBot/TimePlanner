@@ -17,6 +17,7 @@ namespace TimePlannerUpdated.Default
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
         public ObservableCollection<Reminder> CustomReminders { get; set; } = new ObservableCollection<Reminder>();
 
+        public int AutoAddMinutes { get; set; }
         public int AutoAddHours { get; set; }
         public int AutoAddDays { get; set; }
         public int AutoAddMonths { get; set; }
@@ -37,7 +38,7 @@ namespace TimePlannerUpdated.Default
         public void AddNewAutoReminders()
         {
             // only if startingtime is "set" and at least one of hours days and months years is > 0
-            if (AutoAddHours > 0 || AutoAddDays > 0 || AutoAddMonths > 0 || AutoAddYears > 0)
+            if (AutoAddMinutes > 0 || AutoAddHours > 0 || AutoAddDays > 0 || AutoAddMonths > 0 || AutoAddYears > 0)
             {
                 while (AutoReminders.Count < MinimalAutoRemindersCount)
                 {
@@ -49,8 +50,9 @@ namespace TimePlannerUpdated.Default
             }
         }
 
-        public void SetAutoAddTimes(int hours, int days, int months, int years)
+        public void SetAutoAddTimes(int minutes, int hours, int days, int months, int years)
         {
+            AutoAddMinutes = minutes;
             AutoAddHours = hours;
             AutoAddDays = days;
             AutoAddMonths = months;
@@ -81,7 +83,7 @@ namespace TimePlannerUpdated.Default
         {
             // Set defaultvalues maybe of [json] file
             MinimalAutoRemindersCount = 3;
-            SetAutoAddTimes(0, 1, 0, 0);
+            SetAutoAddTimes(0, 0, 1, 0, 0);
             StartingTime = DateTimeOffset.Now;
 
             Title = "unknow";
