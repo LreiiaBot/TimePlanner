@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid DataContext="{StaticResource mvm}">
-        <DataGrid ItemsSource="{Binding Lists}" HorizontalAlignment="Left" Height="334" Margin="25,23,0,0" VerticalAlignment="Top" Width="373" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
+        <DataGrid ItemsSource="{Binding Lists}" HorizontalAlignment="Left" Height="211" Margin="25,23,0,0" VerticalAlignment="Top" Width="373" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Title}"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
@@ -15,7 +15,7 @@
                 <DataGridTextColumn Header="TaskCount" Binding="{Binding Tasks.Count}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid ItemsSource="{Binding Reminders}" HorizontalAlignment="Left" Height="162" Margin="414,47,0,0" VerticalAlignment="Top" Width="178" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
+        <DataGrid ItemsSource="{Binding Reminders}" HorizontalAlignment="Left" Height="162" Margin="63,247,0,0" VerticalAlignment="Top" Width="178" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Done" Binding="{Binding Done}"/>
                 <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline, StringFormat='dd.MM.yyy HH:mm'}"/>
@@ -23,6 +23,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
-
+        <Frame x:Name="frameAutoAdd" Margin="400,70,0,0" Width="250" Height="220"/>
     </Grid>
 </Window>
