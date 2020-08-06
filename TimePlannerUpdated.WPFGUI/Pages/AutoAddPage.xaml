@@ -8,7 +8,7 @@
       d:DesignHeight="220" d:DesignWidth="250"
       Title="AutoAddPage">
 
-    <Grid>
+    <Grid Background="Beige">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -31,8 +31,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="0">
-            <Grid Margin="10">
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -42,8 +42,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="0">
-            <Grid Margin="10">
+        <Border Grid.Row="2" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -53,8 +53,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="3" Grid.Column="0">
-            <Grid Margin="10">
+        <Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -64,8 +64,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="1">
-            <Grid Margin="10">
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -75,8 +75,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1">
-            <Grid Margin="10">
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -86,8 +86,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="3" Grid.Column="1">
-            <Grid Margin="10">
+        <Border Grid.Row="3" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>

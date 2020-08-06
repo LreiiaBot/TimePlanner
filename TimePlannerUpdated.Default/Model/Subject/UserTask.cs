@@ -19,9 +19,9 @@ namespace TimePlannerUpdated.Default
             StartingTime = date;
         }
 
-        public UserTask(string title, string description, DateTimeOffset date, int hours, int days, int months, int years) : this(title, description, date)
+        public UserTask(string title, string description, DateTimeOffset date, int minutes, int hours, int days, int months, int years) : this(title, description, date)
         {
-            SetAutoAddTimes(hours, days, months, years);
+            SetAutoAddTimes(minutes, hours, days, months, years);
         }
         protected override void SetDefaultValues()
         {
