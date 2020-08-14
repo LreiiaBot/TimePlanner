@@ -10,7 +10,7 @@ add new things regularly please
 REVIEW
 #######
 
-  - autoAddHours is already there, also add minutes????????
+  - autoAddHours is already there, also add minutes
   - Remindersorter
   - TimeControlledElementSorter
 
@@ -38,7 +38,7 @@ GUI
 
                                                                                                                       - sometimes update for exapmle "task gets red when due" (on load calculate time till this happens, then start disptachertimer or something)
 
-                                                                                                                      - maybe use frames ? i think they are called like this. For example Datagrid with TimeControlledElements just take it and put it in every window where it is needed
+                                                                                                                      - use pages i think they are called like this. For example Datagrid with TimeControlledElements just take it and put it in every window where it is needed
 
   - what do i want to display?
 
