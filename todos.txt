@@ -63,6 +63,16 @@ BASIC PROCEDURE
   - even lists have reminders, obviously they have to be managed aswell (think about old tasks, create new ones and so on)
 
   - how to add new tasks?
+
+  - AutoAddVariables why? why not timespan? because birthdays?
+            -> checkbox (precise/"flat")
+
+  - startingTimeInitial and last/next (maybe include auto in the varname)
+
+  - is the program fast enough?
+
+  - only load undone, i think loading all, might influence performance
+
   ========================
 
     - it has to be fast! thats the point
@@ -81,6 +91,8 @@ FEATURES / IDEAS
   =========
 
     - see when something is changed, added, removed, ... and from who, when and what
+
+    - show recent startingTimes of TimeControlledElements
 
   Alarm
   ======
@@ -103,10 +115,11 @@ FEATURES / IDEAS
   - bool "notify" maybe on every reminder? or task? or task has a defaultvalue every reminder inheritates it but can be changed
 	only when on the program makes beep or sets a alarm. when false no sound is made
 
-LIST EXAPLE IDEAS
+LIST EXAMPLE IDEAS
 ##################
 
   - birthday
+      -> how? assign weekly reminder to list? better would be to remember (x days) before birthday. (to buy gifts)
 
   - habits
   =========
