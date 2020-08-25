@@ -19,7 +19,7 @@ namespace TimePlannerUpdated.Default
         {
             // ToDo AddReminder should maybe be moved to TimeControlledElement - then only add this way, the parent has to be right OR BETTER MAYBE OBSERVABLECOLLECTION OR SOMETHING SIMILAR!! THIS WOULD BE SOOOO COOOOL
 
-            var tl = new TaskList("title", "disc");
+            var tl = new TaskList("DailyToDos", "disc");
             tl.Tasks.Add(new UserTask("Essen", "Essen kaufen und dann super"));
 
             Lists.Add(tl);

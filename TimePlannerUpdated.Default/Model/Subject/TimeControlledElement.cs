@@ -101,5 +101,10 @@ namespace TimePlannerUpdated.Default
                 item.Parent = this;
             }
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

@@ -67,12 +67,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OverViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AutoAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OverViewWindow.xaml.cs">
+      <DependentUpon>OverViewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AutoAddPage.xaml.cs">
       <DependentUpon>AutoAddPage.xaml</DependentUpon>
     </Compile>
