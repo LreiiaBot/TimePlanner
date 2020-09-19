@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using TimePlannerUpdated.Default;
 
 namespace TimePlannerUpdated.WPFGUI
@@ -51,6 +52,11 @@ namespace TimePlannerUpdated.WPFGUI
             System.Console.WriteLine(result);
 
             e.ResultAction?.Invoke(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            cbLists.IsEnabled = ((CheckBox)sender).IsChecked == false;
         }
     }
 }

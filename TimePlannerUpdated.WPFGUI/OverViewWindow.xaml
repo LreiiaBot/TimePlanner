@@ -34,8 +34,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="0" IsEnabled="{Binding UnlockList}" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
-                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding LockList}" Content="Lock list" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <ComboBox Grid.Row="0" Grid.Column="0" IsEnabled="{Binding UnlockList}" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding LockList}" Content="Lock list" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Click="CheckBox_Click"/>
 
                 <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="tbDescription" Text="{Binding Description}"/>
                 <Button Grid.Row="1" Grid.Column="2" Content="Add" IsDefault="True"/>
