@@ -34,8 +34,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="0" IsEnabled="{Binding UnlockList}" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding LockList}" Content="Lock list" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Click="CheckBox_Click"/>
+                <ComboBox Grid.Row="0" Grid.Column="0" IsEnabled="False" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="True" Content="Lock list" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Click="CheckBox_Click"/>
 
                 <!-- Apply Button Style via file, look up how to do -->
                 <Button Grid.Row="0" Grid.Column="2" Content="Open Lists"/>
