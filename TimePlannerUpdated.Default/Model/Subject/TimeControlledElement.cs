@@ -104,7 +104,12 @@ namespace TimePlannerUpdated.Default
 
         public override string ToString()
         {
-            return Title;
+            string str = Title;
+            if (String.IsNullOrWhiteSpace(str))
+            {
+                str = Description;
+            }
+            return str;
         }
     }
 }

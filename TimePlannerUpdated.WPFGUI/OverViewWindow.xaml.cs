@@ -13,6 +13,7 @@ namespace TimePlannerUpdated.WPFGUI
         public OverViewWindow()
         {
             mv = (MainViewModel)FindResource("mvm");
+            this.DataContext = mv;
             mv.DialogCreateRequest += OnDialogCreateRequest;
             mv.MessageBoxRequest += OnMessageBoxRequest;
 

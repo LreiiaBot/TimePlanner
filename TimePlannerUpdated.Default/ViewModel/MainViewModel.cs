@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace TimePlannerUpdated.Default
 {
-    public class MainViewModel
+    public class MainViewModel : BaseModel
     {
         #region Mvvm Events
 
@@ -17,12 +17,66 @@ namespace TimePlannerUpdated.Default
         #region Mvvm Commands
 
         public ICommand OnMouseDoubleClickCommand { get; set; }
+        public ICommand OnTitleAddCommand { get; set; }
 
         #endregion
 
-        public TaskList SelectedList { get; set; }
-        public ObservableCollection<Reminder> Reminders { get; set; } = new ObservableCollection<Reminder>();
-        public ObservableCollection<TaskList> Lists { get; set; } = new ObservableCollection<TaskList>();
+        #region Members
+
+        private TaskList selectedList;
+        public TaskList SelectedList
+        {
+            get
+            {
+                return selectedList;
+            }
+            set
+            {
+                selectedList = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<Reminder> reminders = new ObservableCollection<Reminder>();
+        public ObservableCollection<Reminder> Reminders
+        {
+            get
+            {
+                return reminders;
+            }
+            set
+            {
+                reminders = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<TaskList> lists = new ObservableCollection<TaskList>();
+        public ObservableCollection<TaskList> Lists
+        {
+            get
+            {
+                return lists;
+            }
+            set
+            {
+                lists = value;
+                OnPropertyChanged();
+            }
+        }
+        private string title;
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         public MainViewModel()
         {
@@ -35,9 +89,21 @@ namespace TimePlannerUpdated.Default
         private void SetupCommands()
         {
             OnMouseDoubleClickCommand = new ActionCommand(OnMouseDoubleClick);
+            OnTitleAddCommand = new ActionCommand(OnTitleAdd);
         }
 
         #region Mvvm Command Methods
+
+        private void OnTitleAdd(object obj)
+        {
+            if (!String.IsNullOrWhiteSpace(Title))
+            {
+                SelectedList.Tasks.Add(new UserTask(Title.Trim()));
+
+                Title = String.Empty;
+                Update();
+            }
+        }
 
         private void OnMouseDoubleClick(object obj)
         {
@@ -69,7 +135,9 @@ namespace TimePlannerUpdated.Default
             // ToDo check if this works
             var reminderList = SelectedList?.GetAllReminders(false);
             reminderList.Sort(new ReminderSorter());
+
             Reminders = reminderList.Convert();
+
 
             // ToDo maybe order lists
         }

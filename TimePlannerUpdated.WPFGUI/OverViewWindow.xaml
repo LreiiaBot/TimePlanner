@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="OverViewWindow" Height="450" Width="800">
-    <Grid DataContext="{StaticResource mvm}">
+    <Grid>
         <DataGrid ItemsSource="{Binding Reminders}" SelectionMode="Single" HorizontalAlignment="Left" Height="211" Margin="25,23,0,0" VerticalAlignment="Top" Width="586" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Parent.Title}"/>
@@ -40,8 +40,14 @@
                 <!-- Apply Button Style via file, look up how to do -->
                 <Button Grid.Row="0" Grid.Column="2" Content="Open Lists"/>
 
-                <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="tbDescription" Text="{Binding Description}"/>
-                <Button Grid.Row="1" Grid.Column="2" Content="Add" IsDefault="True"/>
+                <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="tbDescription" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="Add" IsDefault="True">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding OnTitleAddCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </Grid>
         </Border>
 
