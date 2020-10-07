@@ -124,9 +124,10 @@ namespace TimePlannerUpdated.Default
 
             var tl = new TaskList("DailyToDos", "disc");
             tl.Tasks.Add(new UserTask("Essen", "Essen kaufen und dann super"));
+            tl.Tasks.Add(new UserTask("Dunzo", "Ich bin ready"));
+            tl.Tasks.FindLast(i => true).GetAllReminders(false).ForEach(t => t.Done = true);
 
             Lists.Add(tl);
-
             SelectedList = tl;
         }
 
