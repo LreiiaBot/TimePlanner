@@ -11,10 +11,12 @@ namespace TimePlannerUpdated.Default
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTimeOffset StartingTime { get; set; }
+        public TimeSpan AutoOffset { get; set; } = TimeSpan.Zero;
 
         public int MinimalAutoRemindersCount { get; set; }
 
         public List<Reminder> AutoReminders { get; set; } = new List<Reminder>();
+        public List<Reminder> AutoOffsetReminders { get; set; } = new List<Reminder>();
         public ObservableCollection<Reminder> CustomReminders { get; set; } = new ObservableCollection<Reminder>();
 
         public int AutoAddMinutes { get; set; }
@@ -22,6 +24,7 @@ namespace TimePlannerUpdated.Default
         public int AutoAddDays { get; set; }
         public int AutoAddMonths { get; set; }
         public int AutoAddYears { get; set; }
+        // ToDo maybe in setter of autoadd... automatically call addnewAutoreminders
 
         public TimeControlledElement()
         {
@@ -43,8 +46,19 @@ namespace TimePlannerUpdated.Default
                 while (AutoReminders.Count < MinimalAutoRemindersCount)
                 {
                     var nextTime = GetNextRemindTime();
+
+                    // AutoReminder
                     var reminder = new Reminder(this, nextTime);
                     AutoReminders.Add(reminder);
+
+                    // AutoReminderWithOffset
+                    if (!AutoOffset.Equals(TimeSpan.Zero))
+                    {
+                        var offsetReminder = new Reminder(this, nextTime.Add(AutoOffset));
+                        offsetReminder.IsOffsetReminder = true;
+                        AutoOffsetReminders.Add(offsetReminder);
+                    }
+
                     StartingTime = nextTime;
                 }
             }
@@ -71,7 +85,7 @@ namespace TimePlannerUpdated.Default
 
         public virtual List<Reminder> GetAllReminders(bool withDone)
         {
-            var reminders = AutoReminders.Concat(CustomReminders).ToList();
+            var reminders = AutoReminders.Concat(AutoOffsetReminders).Concat(CustomReminders).ToList();
             if (!withDone)
             {
                 reminders = reminders.Where((item) => !item.Done).ToList();

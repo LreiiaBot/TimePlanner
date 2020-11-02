@@ -7,6 +7,7 @@ namespace TimePlannerUpdated.Default
         public bool Done { get; set; } = false;
         public DateTimeOffset Deadline { get; set; }
         public TimeControlledElement Parent { get; set; }
+        public bool IsOffsetReminder { get; set; } = false; // ToDo Maybe this is useless
 
         public Reminder()
         {
@@ -31,6 +32,11 @@ namespace TimePlannerUpdated.Default
         public TimeSpan GetRemainingTime()
         {
             return Deadline.GetTimeLeft();
+        }
+
+        public override string ToString()
+        {
+            return $"{Deadline} {Done} {IsOffsetReminder}";
         }
     }
 }

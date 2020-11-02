@@ -115,6 +115,12 @@ FEATURES / IDEAS
   - bool "notify" maybe on every reminder? or task? or task has a defaultvalue every reminder inheritates it but can be changed
 	only when on the program makes beep or sets a alarm. when false no sound is made
 
+  Copy Lists to drive, plus change "history"
+  ==========================================
+
+  - remember until what changes are done when and then let it "merge" itself
+  - also regularly create backups
+
 LIST EXAMPLE IDEAS
 ##################
 
