@@ -82,6 +82,9 @@ BASIC PROCEDURE
 FEATURES / IDEAS
 #################
 
+  Every List should contain a default AutoReminderTime, that the containing elements inherit, when being created or something xd
+  ==============================================================================================================================
+
   Affirmations / motivational sayings / life advice
   =======================================================
 
