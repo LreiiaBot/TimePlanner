@@ -18,6 +18,7 @@ namespace TimePlannerUpdated.Default
 
         public ICommand OnMouseDoubleClickCommand { get; set; }
         public ICommand OnTitleAddCommand { get; set; }
+        public ICommand OnOpenListsCommand { get; set; }
 
         #endregion
 
@@ -90,9 +91,15 @@ namespace TimePlannerUpdated.Default
         {
             OnMouseDoubleClickCommand = new ActionCommand(OnMouseDoubleClick);
             OnTitleAddCommand = new ActionCommand(OnTitleAdd);
+            OnOpenListsCommand = new ActionCommand(OnOpenLists);
         }
 
         #region Mvvm Command Methods
+
+        private void OnOpenLists(object obj)
+        {
+            RequestDialog(DialogType.ViewLists);
+        }
 
         private void OnTitleAdd(object obj)
         {

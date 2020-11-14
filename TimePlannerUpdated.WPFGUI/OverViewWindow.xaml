@@ -38,7 +38,13 @@
                 <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="True" Content="Lock list" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Click="CheckBox_Click"/>
 
                 <!-- Apply Button Style via file, look up how to do -->
-                <Button Grid.Row="0" Grid.Column="2" Content="Open Lists"/>
+                <Button Grid.Row="0" Grid.Column="2" Content="Open Lists">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding OnOpenListsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
 
                 <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="tbDescription" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Row="1" Grid.Column="2" Content="Add" IsDefault="True">

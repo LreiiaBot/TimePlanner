@@ -27,6 +27,9 @@ namespace TimePlannerUpdated.WPFGUI
 
             switch (e.type)
             {
+                case DialogType.ViewLists:
+                    w = new ListViewWindow();
+                    break;
                 case DialogType.Detail:
                     // todo w = new DetailWindow();
                     break;
@@ -42,6 +45,7 @@ namespace TimePlannerUpdated.WPFGUI
 
             if (w != null)
             {
+                w.DataContext = mv;
                 w.ShowDialog();
             }
         }

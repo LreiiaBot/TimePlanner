@@ -1,0 +1,27 @@
+﻿<Window x:Class="TimePlannerUpdated.WPFGUI.ListViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:TimePlannerUpdated.WPFGUI"
+        mc:Ignorable="d"
+        Title="ListViewWindow" Height="450" Width="800">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" IsEnabled="True" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" VerticalAlignment="Top" Width="292" Height="21"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,45,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Title}" VerticalAlignment="Top" Width="388"/>
+        <TextBox HorizontalAlignment="Left" Height="98" Margin="10,90,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Description}" VerticalAlignment="Top" Width="388"/>
+        <DataGrid ItemsSource="{Binding SelectedList.Tasks}" SelectionMode="Single" HorizontalAlignment="Left" Height="189" Margin="10,208,0,0" VerticalAlignment="Top" Width="388" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="StartingTime" Binding="{Binding StartingTime, StringFormat='dd.MM.yyy HH:mm'}"/>
+                <DataGridTextColumn Header="Pending Reminders" Binding="{Binding PendingReminders.Count}"/>
+            </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding OnMouseDoubleClickCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>
+    </Grid>
+</Window>

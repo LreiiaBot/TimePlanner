@@ -26,6 +26,15 @@ namespace TimePlannerUpdated.Default
         public int AutoAddYears { get; set; }
         // ToDo maybe in setter of autoadd... automatically call addnewAutoreminders
 
+        public List<Reminder> PendingReminders
+        {
+            get
+            {
+                return GetAllReminders(false);
+            }
+        }
+
+
         public TimeControlledElement()
         {
             Init();
