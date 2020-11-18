@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TimePlannerUpdated.Default;
 
 namespace TimePlannerUpdated.WPFGUI
 {
@@ -10,6 +11,11 @@ namespace TimePlannerUpdated.WPFGUI
         public ListViewWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((MainViewModel)DataContext).inOverViewWindow = true;
         }
     }
 }

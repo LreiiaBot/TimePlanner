@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -19,6 +20,7 @@ namespace TimePlannerUpdated.Default
         public ICommand OnMouseDoubleClickCommand { get; set; }
         public ICommand OnTitleAddCommand { get; set; }
         public ICommand OnOpenListsCommand { get; set; }
+        public ICommand OnButtonAddListCommand { get; set; }
 
         #endregion
 
@@ -37,6 +39,7 @@ namespace TimePlannerUpdated.Default
                 OnPropertyChanged();
             }
         }
+
         private ObservableCollection<Reminder> reminders = new ObservableCollection<Reminder>();
         public ObservableCollection<Reminder> Reminders
         {
@@ -77,6 +80,9 @@ namespace TimePlannerUpdated.Default
             }
         }
 
+
+        public bool inOverViewWindow = true;
+
         #endregion
 
         public MainViewModel()
@@ -92,12 +98,19 @@ namespace TimePlannerUpdated.Default
             OnMouseDoubleClickCommand = new ActionCommand(OnMouseDoubleClick);
             OnTitleAddCommand = new ActionCommand(OnTitleAdd);
             OnOpenListsCommand = new ActionCommand(OnOpenLists);
+            OnButtonAddListCommand = new ActionCommand(OnButtonAddList);
         }
 
         #region Mvvm Command Methods
-
+        private void OnButtonAddList(object obj)
+        {
+            TaskList createdList = new TaskList("new List", "description");
+            Lists.Add(createdList);
+            SelectedList = createdList;
+        }
         private void OnOpenLists(object obj)
         {
+            inOverViewWindow = false;
             RequestDialog(DialogType.ViewLists);
         }
 
@@ -127,6 +140,8 @@ namespace TimePlannerUpdated.Default
 
         private void LoadList()
         {
+            // Testing Data
+
             // ToDo AddReminder should maybe be moved to TimeControlledElement - then only add this way, the parent has to be right OR BETTER MAYBE OBSERVABLECOLLECTION OR SOMETHING SIMILAR!! THIS WOULD BE SOOOO COOOOL
 
             var tl = new TaskList("DailyToDos", "disc");
@@ -136,12 +151,18 @@ namespace TimePlannerUpdated.Default
 
             Lists.Add(tl);
             SelectedList = tl;
+
+            Lists.Add(new TaskList("Birthdays", "Containging the Birthdates of friends."));
         }
 
         private void Update()
         {
             // ToDo check if this works
-            var reminderList = SelectedList?.GetAllReminders(false);
+            List<Reminder> reminderList = new List<Reminder>();// = SelectedList?.GetAllReminders(false);
+            foreach (var list in Lists)
+            {
+                reminderList.AddRange(list.GetAllReminders(false));
+            }
             reminderList.Sort(new ReminderSorter());
 
             Reminders = reminderList.Convert();
