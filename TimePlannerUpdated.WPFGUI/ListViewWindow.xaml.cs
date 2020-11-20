@@ -12,6 +12,7 @@ namespace TimePlannerUpdated.WPFGUI
         public ListViewWindow(MainViewModel mv)
         {
             this.mv = mv;
+            DataContext = this.mv;
             mv.EnableInputRequest += OnEnableInputRequest;
             InitializeComponent();
         }

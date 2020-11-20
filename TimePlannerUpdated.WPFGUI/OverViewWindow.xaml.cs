@@ -45,7 +45,6 @@ namespace TimePlannerUpdated.WPFGUI
 
             if (w != null)
             {
-                w.DataContext = mv;
                 w.ShowDialog();
             }
         }
