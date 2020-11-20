@@ -10,8 +10,8 @@
         Closing="Window_Closing">
     <Grid>
         <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" IsEnabled="True" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" VerticalAlignment="Top" Width="292" Height="21"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,45,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Title}" VerticalAlignment="Top" Width="388"/>
-        <TextBox HorizontalAlignment="Left" Height="98" Margin="10,90,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Description}" VerticalAlignment="Top" Width="388"/>
+        <TextBox x:Name="tbTitle" HorizontalAlignment="Left" Height="23" Margin="10,45,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Title}" VerticalAlignment="Top" Width="388"/>
+        <TextBox x:Name="tbDescription" HorizontalAlignment="Left" Height="98" Margin="10,90,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Description}" VerticalAlignment="Top" Width="388"/>
         <DataGrid ItemsSource="{Binding SelectedList.Tasks}" SelectionMode="Single" HorizontalAlignment="Left" Height="189" Margin="10,208,0,0" VerticalAlignment="Top" Width="388" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Title}"/>

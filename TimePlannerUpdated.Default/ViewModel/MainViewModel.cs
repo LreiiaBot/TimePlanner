@@ -13,6 +13,8 @@ namespace TimePlannerUpdated.Default
         public event EventHandler<MvvmDialogEventArgs> DialogCreateRequest;
         public event EventHandler<EventArgs> DialogCloseRequest;
 
+        public event EventHandler<bool> EnableInputRequest;
+
         #endregion
 
         #region Mvvm Commands
@@ -107,6 +109,8 @@ namespace TimePlannerUpdated.Default
             TaskList createdList = new TaskList("new List", "description");
             Lists.Add(createdList);
             SelectedList = createdList;
+
+            EnableInputRequest(this, true);
         }
         private void OnOpenLists(object obj)
         {

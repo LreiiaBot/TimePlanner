@@ -28,7 +28,7 @@ namespace TimePlannerUpdated.WPFGUI
             switch (e.type)
             {
                 case DialogType.ViewLists:
-                    w = new ListViewWindow();
+                    w = new ListViewWindow(mv);
                     break;
                 case DialogType.Detail:
                     // todo w = new DetailWindow();
