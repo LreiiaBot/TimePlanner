@@ -27,7 +27,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="StartingDate"/>
-                <DatePicker Grid.Row="1"/>
+                <DatePicker Grid.Row="1" SelectedDate="{Binding Selected.StartingTime}"/>
             </Grid>
         </Border>
 
@@ -49,7 +49,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="AddMinutes"/>
-                <TextBox Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" VerticalAlignment="Center" Text="{Binding Selected.AutoAddMinutes}"/>
             </Grid>
         </Border>
 

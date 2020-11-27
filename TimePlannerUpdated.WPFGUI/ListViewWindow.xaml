@@ -31,5 +31,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
+        <Frame x:Name="frameAutoAdd" HorizontalAlignment="Left" Margin="424,177,0,0" VerticalAlignment="Top" Width="250" Height="220"/>
     </Grid>
 </Window>

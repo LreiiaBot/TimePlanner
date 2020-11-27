@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TimePlannerUpdated.Default;
 using TimePlannerUpdated.WPFGUI.Pages;
 
 namespace TimePlannerUpdated.WPFGUI
@@ -11,7 +12,7 @@ namespace TimePlannerUpdated.WPFGUI
         public MainWindow()
         {
             InitializeComponent();
-            frameAutoAdd.Navigate(new AutoAddPage());
+            frameAutoAdd.Navigate(new AutoAddPage(((MainViewModel)DataContext).SelectedList));
         }
     }
 }

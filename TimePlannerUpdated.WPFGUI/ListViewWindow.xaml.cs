@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using TimePlannerUpdated.Default;
+using TimePlannerUpdated.WPFGUI.Pages;
 
 namespace TimePlannerUpdated.WPFGUI
 {
@@ -13,8 +14,11 @@ namespace TimePlannerUpdated.WPFGUI
         {
             this.mv = mv;
             DataContext = this.mv;
+
             mv.EnableInputRequest += OnEnableInputRequest;
             InitializeComponent();
+
+            frameAutoAdd.Navigate(new AutoAddPage());
         }
 
         /// <summary>
