@@ -6,7 +6,7 @@ using System.Linq;
 namespace TimePlannerUpdated.Default
 {
     // ToDo maybe console version can modify this class by adding print method - hope this wont change the wpf solution
-    public abstract partial class TimeControlledElement
+    public abstract partial class TimeControlledElement : IPersistence
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -133,6 +133,17 @@ namespace TimePlannerUpdated.Default
                 str = Description;
             }
             return str;
+        }
+
+        public virtual string ToCsv()
+        {
+            return $"{Title}"; // TODO
+            // Children overrwrite this method by using base() and then adding things maybe
+        }
+
+        public virtual void ToObject(string csv)
+        {
+            throw new NotImplementedException(); // TODO
         }
     }
 }
