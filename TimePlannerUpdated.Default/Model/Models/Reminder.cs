@@ -4,6 +4,7 @@ namespace TimePlannerUpdated.Default
 {
     public class Reminder
     {
+        public int Id { get; set; }
         public bool Done { get; set; } = false;
         public DateTimeOffset Deadline { get; set; }
         public TimeControlledElement Parent { get; set; }

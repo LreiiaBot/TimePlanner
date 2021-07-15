@@ -8,6 +8,7 @@ namespace TimePlannerUpdated.Default
     // ToDo maybe console version can modify this class by adding print method - hope this wont change the wpf solution
     public abstract partial class TimeControlledElement : IPersistence
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTimeOffset StartingTime { get; set; }
