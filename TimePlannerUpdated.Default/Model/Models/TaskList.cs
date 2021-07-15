@@ -12,6 +12,19 @@ namespace TimePlannerUpdated.Default
             Description = description;
         }
 
+        public static List<TaskList> ReadAll()
+        {
+            return DBTaskList.ReadAll();
+        }
+        public static void Save(TaskList tasklist)
+        {
+            DBTaskList.Save(tasklist);
+        }
+        public static void SaveAll(IEnumerable<TaskList> tasklists)
+        {
+            DBTaskList.SaveAll(tasklists);
+        }
+
         public override List<Reminder> GetAllReminders(bool withDone)
         {
             var reminders = base.GetAllReminders(withDone);

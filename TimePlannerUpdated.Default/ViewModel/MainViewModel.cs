@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace TimePlannerUpdated.Default
@@ -144,20 +145,9 @@ namespace TimePlannerUpdated.Default
 
         private void LoadList()
         {
-            // Testing Data
-
             // ToDo AddReminder should maybe be moved to TimeControlledElement - then only add this way, the parent has to be right OR BETTER MAYBE OBSERVABLECOLLECTION OR SOMETHING SIMILAR!! THIS WOULD BE SOOOO COOOOL
-
-            var tl = new TaskList("DailyToDos", "disc");
-            tl.Tasks.Add(new UserTask("Essen", "Essen kaufen und dann super"));
-            tl.Tasks.Add(new UserTask("Dunzo", "Ich bin ready"));
-            tl.Tasks.FindLast(i => true).GetAllReminders(false).ForEach(t => t.Done = true);
-
-            Lists.Add(tl);
-            SelectedList = tl;
-
-            Lists.Add(new TaskList("Birthdays", "Containging the Birthdates of friends."));
-
+            Lists = TaskList.ReadAll().Convert();
+            SelectedList = Lists.FirstOrDefault();
         }
 
         private void Update()
@@ -173,6 +163,7 @@ namespace TimePlannerUpdated.Default
             Reminders = reminderList.Convert();
 
             // ToDo maybe order lists
+            TaskList.SaveAll(Lists);
         }
 
         private void RequestMessageBox(Action<bool> resultAction, string messageBoxText, string caption = "", bool onlyOk = true)
