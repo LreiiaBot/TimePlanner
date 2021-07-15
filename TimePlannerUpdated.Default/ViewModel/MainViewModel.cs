@@ -157,6 +157,7 @@ namespace TimePlannerUpdated.Default
             SelectedList = tl;
 
             Lists.Add(new TaskList("Birthdays", "Containging the Birthdates of friends."));
+
         }
 
         private void Update()
@@ -170,7 +171,6 @@ namespace TimePlannerUpdated.Default
             reminderList.Sort(new ReminderSorter());
 
             Reminders = reminderList.Convert();
-
 
             // ToDo maybe order lists
         }

@@ -35,24 +35,14 @@ namespace TimePlannerUpdated.Default.Migrations
                     b.Property<int?>("TaskListId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TaskListId1")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UserTaskId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserTaskId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TaskListId");
 
-                    b.HasIndex("TaskListId1");
-
                     b.HasIndex("UserTaskId");
-
-                    b.HasIndex("UserTaskId1");
 
                     b.ToTable("Reminder");
                 });
@@ -154,17 +144,9 @@ namespace TimePlannerUpdated.Default.Migrations
                         .WithMany("CustomReminders")
                         .HasForeignKey("TaskListId");
 
-                    b.HasOne("TimePlannerUpdated.Default.TaskList", null)
-                        .WithMany("PendingReminders")
-                        .HasForeignKey("TaskListId1");
-
                     b.HasOne("TimePlannerUpdated.Default.UserTask", null)
                         .WithMany("CustomReminders")
                         .HasForeignKey("UserTaskId");
-
-                    b.HasOne("TimePlannerUpdated.Default.UserTask", null)
-                        .WithMany("PendingReminders")
-                        .HasForeignKey("UserTaskId1");
                 });
 
             modelBuilder.Entity("TimePlannerUpdated.Default.UserTask", b =>

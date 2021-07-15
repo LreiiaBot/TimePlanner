@@ -69,9 +69,7 @@ namespace TimePlannerUpdated.Default.Migrations
                     Deadline = table.Column<DateTimeOffset>(nullable: false),
                     IsOffsetReminder = table.Column<bool>(nullable: false),
                     TaskListId = table.Column<int>(nullable: true),
-                    TaskListId1 = table.Column<int>(nullable: true),
-                    UserTaskId = table.Column<int>(nullable: true),
-                    UserTaskId1 = table.Column<int>(nullable: true)
+                    UserTaskId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,20 +81,8 @@ namespace TimePlannerUpdated.Default.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reminder_TaskList_TaskListId1",
-                        column: x => x.TaskListId1,
-                        principalTable: "TaskList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Reminder_UserTask_UserTaskId",
                         column: x => x.UserTaskId,
-                        principalTable: "UserTask",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reminder_UserTask_UserTaskId1",
-                        column: x => x.UserTaskId1,
                         principalTable: "UserTask",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -108,19 +94,9 @@ namespace TimePlannerUpdated.Default.Migrations
                 column: "TaskListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reminder_TaskListId1",
-                table: "Reminder",
-                column: "TaskListId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reminder_UserTaskId",
                 table: "Reminder",
                 column: "UserTaskId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reminder_UserTaskId1",
-                table: "Reminder",
-                column: "UserTaskId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserTask_TaskListId",

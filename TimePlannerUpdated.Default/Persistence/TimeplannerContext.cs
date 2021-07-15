@@ -25,6 +25,7 @@ namespace TimePlannerUpdated.Default
                 //entity.HasKey(e => e.Id);
                 entity.Ignore(e => e.AutoOffsetReminders);
                 entity.Ignore(e => e.AutoReminders);
+                entity.Ignore(e => e.PendingReminders);
             });
 
             modelBuilder.Entity<TaskList>(entity =>
@@ -33,6 +34,7 @@ namespace TimePlannerUpdated.Default
                 //entity.HasKey(e => e.Id);
                 entity.Ignore(e => e.AutoOffsetReminders);
                 entity.Ignore(e => e.AutoReminders);
+                entity.Ignore(e => e.PendingReminders);
             });
 
             modelBuilder.Entity<Reminder>(entity =>
