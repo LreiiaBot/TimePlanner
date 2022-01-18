@@ -18,5 +18,10 @@ namespace TimePlannerUpdated.WPFGUI.Pages
         {
             //Selected = selected;
         }
+
+        public AutoAddPage(object viewModel)
+        {
+            //this.DataContext = viewModel;
+        }
     }
 }

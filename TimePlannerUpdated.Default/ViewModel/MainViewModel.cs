@@ -86,6 +86,8 @@ namespace TimePlannerUpdated.Default
 
         public bool inOverViewWindow = true;
 
+        public TimeControlledElement Selected { get; set; } = new TaskList("Food", "Yummy");
+
         #endregion
 
         public MainViewModel()
@@ -140,6 +142,7 @@ namespace TimePlannerUpdated.Default
             string response = ok ? "ok" : "no";
             RequestMessageBox(null, response);
         }
+
 
         #endregion
 

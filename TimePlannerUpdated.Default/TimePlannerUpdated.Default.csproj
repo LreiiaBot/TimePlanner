@@ -5,12 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Migrations\20210715183313_init.cs" />
-	  <Compile Remove="Migrations\20210715183313_init.Designer.cs" />
-	  <Compile Remove="Migrations\20210715190009_init1.cs" />
-	  <Compile Remove="Migrations\20210715190009_init1.Designer.cs" />
-	  <Compile Remove="Migrations\20210715190415_in.cs" />
-	  <Compile Remove="Migrations\20210715190415_in.Designer.cs" />
+		<Compile Remove="Migrations\20210715183313_init.cs" />
+		<Compile Remove="Migrations\20210715183313_init.Designer.cs" />
+		<Compile Remove="Migrations\20210715190009_init1.cs" />
+		<Compile Remove="Migrations\20210715190009_init1.Designer.cs" />
+		<Compile Remove="Migrations\20210715190415_in.cs" />
+		<Compile Remove="Migrations\20210715190415_in.Designer.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Migrations\" />
+		<Folder Include="Migrations\" />
 	</ItemGroup>
 
 </Project>

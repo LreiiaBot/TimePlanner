@@ -18,7 +18,10 @@ namespace TimePlannerUpdated.WPFGUI
             mv.EnableInputRequest += OnEnableInputRequest;
             InitializeComponent();
 
-            frameAutoAdd.Navigate(new AutoAddPage());
+            //frameAutoAdd.Navigate(new AutoAddPage(mv.SelectedList));
+            AutoAddPage autoAddPage = new AutoAddPage();
+            frameAutoAdd.Navigate(autoAddPage);
+            autoAddPage.DataContext = mv;
         }
 
         /// <summary>
