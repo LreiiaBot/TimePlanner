@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TimePlannerUpdated.WPFGUI"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="OverViewWindow" Height="450" Width="800">
+        Title="OverViewWindow" Height="450" Width="800"
+        Style="{StaticResource CustomWindowStyle}">
     <Grid>
         <DataGrid ItemsSource="{Binding Reminders}" SelectionMode="Single" HorizontalAlignment="Left" Height="211" Margin="25,23,0,0" VerticalAlignment="Top" Width="586" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>

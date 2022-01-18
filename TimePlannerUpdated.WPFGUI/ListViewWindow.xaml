@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:TimePlannerUpdated.WPFGUI"
         mc:Ignorable="d"
         Title="ListViewWindow" Height="450" Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Style="{StaticResource CustomWindowStyle}">
     <Grid>
         <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" IsEnabled="True" ItemsSource="{Binding Lists}" SelectedItem="{Binding SelectedList}" x:Name="cbLists" VerticalAlignment="Top" Width="292" Height="21"/>
         <TextBox x:Name="tbTitle" HorizontalAlignment="Left" Height="23" Margin="10,45,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding SelectedList.Title}" VerticalAlignment="Top" Width="388"/>

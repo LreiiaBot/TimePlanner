@@ -5,6 +5,11 @@
              xmlns:local1="clr-namespace:TimePlannerUpdated.Default;assembly=TimePlannerUpdated.Default"
              StartupUri="OverViewWindow.xaml">
     <Application.Resources>
-        <local1:MainViewModel x:Key="mvm"/>
+        <ResourceDictionary>
+            <local1:MainViewModel x:Key="mvm"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/DarkTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
